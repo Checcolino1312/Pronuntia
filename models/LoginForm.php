@@ -74,10 +74,19 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = Logopedista::findOne(['email' => $this->email]);
+            $logopedista = Logopedista::findOne(['email' => $this->email]);
+            if ($logopedista !== null) {
+                $this->_user = $logopedista;
+            } else {
+                $caregiver = Caregiver::findOne(['email' => $this->email]);
+                if ($caregiver !== null) {
+                    $this->_user = $caregiver;
+                }
+            }
         }
 
         return $this->_user;
     }
+
 
 }

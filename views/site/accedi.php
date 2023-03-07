@@ -11,7 +11,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 </br>
     <p><a class="btn btn-lg btn-success" href="/logopedista/login">Login Logopedista &raquo;</a></p>
-
+    </br>
+    <p><a class="btn btn-lg btn-success" href="/caregiver/login">Login CareGiver &raquo;</a></p>
 
 
 

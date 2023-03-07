@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Caregiver;
+use app\models\LoginForm;
 use app\models\CaregiverSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -55,9 +56,7 @@ class CaregiverController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        return $this->render('view', ['model' => Caregiver::findOne($id)]);
     }
 
     /**
@@ -130,5 +129,30 @@ class CaregiverController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionLogin(){
+
+        $model = new LoginForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            $model->rememberMe = true;
+            $searchModel = new CaregiverSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            $dataProvider->query->andWhere(['id' => Yii::$app->user->id]);
+
+//            return $this->redirect(['index']);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+                'model' => $model,
+                'isGuest' => Yii::$app->user->isGuest,
+            ]);
+        }
+
+        $model->password = '';
+        return $this->render('login', [
+            'model' => $model,
+        ]);
     }
 }

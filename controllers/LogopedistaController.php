@@ -142,6 +142,19 @@ class LogopedistaController extends Controller
         return $this->render('view', ['model' => Logopedista::findOne($id)]);
     }
 
+    public function actionViewIndex($id)
+    {
+        $model = Logopedista::find()
+            ->select(['nome', 'cognome', 'email']) // seleziona solo alcuni campi
+            ->where(['id' => $id])
+            ->one();
+
+        return $this->render('view', [
+            'model' => $model,
+        ]);
+    }
+
+
 
 
     public function actionLogin(){

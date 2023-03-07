@@ -42,30 +42,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <!---->
 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 <!---->
-<?= GridView::widget([
-        'dataProvider' => $dataProvider,
+    <h4>Benvenuto Dott.</h4> <h1><?= $model->nome ?></h1>
+    <p>Email: <?= $model->email ?></p>
 
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'nome',
-            'cognome',
-            'email:email',
-            'password',
-            'cellulare',
-            'indirizzo_studio',
-            //'status',
-            //'auth_key',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Logopedista $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
-            ],
-        ],
-    'summary' => '',
-    ]); ?>
+
+
+
 
 
 </div>
