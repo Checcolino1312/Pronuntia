@@ -42,8 +42,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <!---->
 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 <!---->
-    <h4>Benvenuto Dott.</h4> <h1><?= $model->nome ?></h1>
-    <p>Email: <?= $model->email ?></p>
+<!--    <h4>Benvenuto Dott.</h4> <h1>--><?php //= $model->nome ?><!--</h1>-->
+<!--    <p>Email: --><?php //= $model->email ?><!--</p>-->
 
 
 

@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Caregiver;
 use app\models\LoginForm;
 use app\models\CaregiverSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
