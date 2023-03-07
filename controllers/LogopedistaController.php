@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Caregiver;
 use app\models\LoginForm;
 use app\models\LogopedistaSearch;
 use Codeception\Lib\Interfaces\ActiveRecord;
@@ -98,10 +99,22 @@ class LogopedistaController extends Controller
         ]);
     }
 
-    public function actionCreate_assistito()
+    public function actionCreate_caregiver()
     {
+        $model = new Caregiver();
 
-          return $this->render('create_assistito');
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['index']);
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('create_caregiver', [
+            'model' => $model,
+        ]);
+          //return $this->render('create_caregiver');
 
 
     }

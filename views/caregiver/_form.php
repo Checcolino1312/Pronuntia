@@ -6,6 +6,10 @@ use yii\widgets\ActiveForm;
 /** @var yii\web\View $this */
 /** @var app\models\Caregiver $model */
 /** @var yii\widgets\ActiveForm $form */
+
+$value = $_GET['id'];
+$model->id_logopedista = $value;
+
 ?>
 
 <div class="caregiver-form">
@@ -22,7 +26,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'cellulare')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'id_logopedista')->textInput() ?>
+    <?= $form->field($model, 'id_logopedista')->hiddenInput()->label(false); ?>
+
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

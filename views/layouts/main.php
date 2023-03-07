@@ -46,7 +46,6 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 //            ['label' => 'Login Logopedista', 'url' => ['/logopedista/login']],
 //            ['label' => 'Lista logopedisti', 'url' => ['/logopedista']],
             ['label' => 'Registrati', 'url' => ['/logopedista/create']],
-            ['label' => 'Registrati', 'url' => ['/logopedista/create_assistito']],
             ['label' => 'Accedi', 'url' => ['site/accedi']],
 //            ['label' => 'Signup', 'url' => ['/site/signup']],
 //            ['label' => 'Contact', 'url' => ['/site/contact']],

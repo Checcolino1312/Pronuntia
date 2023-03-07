@@ -69,6 +69,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 </div>
-<?= Html::a('Crea assistito', ['create_assistito', 'id' => Yii::$app->user->id], ['class' => 'btn btn-primary']) ?>
+<?= Html::a('Crea CareGiver', ['create_caregiver', 'id' => Yii::$app->user->id], ['class' => 'btn btn-primary']) ?>
 
-<p><a class="btn btn-lg btn-success" href="/logopedista/create_assistito">Aggiungi Assistito &raquo;</a></p>
+<!--<p><a class="btn btn-lg btn-success" href="/logopedista/create_assistito">Aggiungi Assistito &raquo;</a></p>-->
