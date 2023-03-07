@@ -20,9 +20,18 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\controllers\User',
+            'identityClass' => 'app\models\logopedista',
             'enableAutoLogin' => true,
+            'enableSession' => true,
         ],
+
+        'session' => [
+            'class' => 'yii\web\Session',
+
+        ],
+   
+
+
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -42,15 +51,19 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+
     ],
+
+
+
+
     'params' => $params,
 ];
 

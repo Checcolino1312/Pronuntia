@@ -5,12 +5,14 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 
+
+
 /**
  * LoginForm is the model behind the login form.
  */
 class LoginForm extends Model
 {
-    public $username;
+    public $email;
     public $password;
     public $rememberMe = true;
 
@@ -24,7 +26,7 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required'],
+            [['email', 'password'], 'required'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
@@ -39,13 +41,13 @@ class LoginForm extends Model
      * @param string $attribute the attribute currently being validated
      * @param array $params the additional name-value pairs given in the rule
      */
-    public function validatePassword($attribute, $params)
+    public function validatePassword($attribute)
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Username o password non corretti.');
+                $this->addError($attribute, 'ATTENZIONE Username o password non corretti.');
             }
         }
     }
@@ -57,7 +59,9 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
+
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            //return Yii::$app->user->login($this->getUser());
         }
         return false;
     }
@@ -70,9 +74,10 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::findOne(['username' => $this->username]);
+            $this->_user = Logopedista::findOne(['email' => $this->email]);
         }
 
         return $this->_user;
     }
+
 }

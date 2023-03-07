@@ -4,18 +4,16 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Info';
+$this->title = 'Accedi';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-       info page
-    </p>
+</br>
+    <p><a class="btn btn-lg btn-success" href="/logopedista/login">Login Logopedista &raquo;</a></p>
 
 
 
 
-    <code><?= __FILE__ ?></code>
+<!--    <code>--><?php //= __FILE__ ?><!--</code>-->
 </div>

@@ -42,18 +42,24 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Info', 'url' => ['/site/info']],
-            ['label' => 'Signup', 'url' => ['/site/signup']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest
-                ? ['label' => 'Login', 'url' => ['/site/login']]
-                : '<li class="nav-item">'
-                    . Html::beginForm(['/site/logout'])
-                    . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'nav-link btn btn-link logout']
-                    )
-                    . Html::endForm()
-                    . '</li>'
+//
+//            ['label' => 'Login Logopedista', 'url' => ['/logopedista/login']],
+//            ['label' => 'Lista logopedisti', 'url' => ['/logopedista']],
+            ['label' => 'Registrati', 'url' => ['/logopedista/create']],
+            ['label' => 'Registrati', 'url' => ['/logopedista/create_assistito']],
+            ['label' => 'Accedi', 'url' => ['site/accedi']],
+//            ['label' => 'Signup', 'url' => ['/site/signup']],
+//            ['label' => 'Contact', 'url' => ['/site/contact']],
+//            Yii::$app->user->isGuest
+//                ? ['label' => 'Login', 'url' => ['/site/login']]
+//                : '<li class="nav-item">'
+//                    . Html::beginForm(['/site/logout'])
+//                    . Html::submitButton(
+//                        'Logout (' . Yii::$app->user->identity->username . ')',
+//                        ['class' => 'nav-link btn btn-link logout']
+//                    )
+//                    . Html::endForm()
+//                    . '</li>'
         ]
     ]);
     NavBar::end();
