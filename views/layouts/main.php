@@ -12,14 +12,11 @@ use yii\bootstrap5\NavBar;
 
 AppAsset::register($this);
 
-$this->registerCsrfMetaTags();
-$this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
-$this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no']);
-$this->registerMetaTag(['name' => 'description', 'content' => $this->params['meta_description'] ?? '']);
-$this->registerMetaTag(['name' => 'keywords', 'content' => $this->params['meta_keywords'] ?? '']);
-$this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii::getAlias('@web/favicon.ico')]);
+
 ?>
 <?php $this->beginPage() ?>
+
+
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
@@ -29,29 +26,54 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
-<header id="header">
+<!--<header id="header">-->
+<!--    --><?php
+//    NavBar::begin([
+//        'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
+//    ]);
+//
+//    $item=[['label' => 'Pronuntia', 'url' => ['/site/index']],
+//            ['label' => 'Info', 'url' => ['/site/info']],
+//        ['label' => 'Registrati', 'url' => ['/logopedista/create']],
+//        ];
+//
+//        if(Yii::$app->user->isGuest){
+//                array_push($item, ['label' => 'Login', 'url' => ['/site/login']]);
+//            } else{
+//                array_push($item,'<li>'. Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline']). Html::submitButton('Logout (' . Yii::$app->user->identity->email . ')',['class' => 'btn btn-link logout']).Html::endForm().'</li>');
+//             }
+//    echo Nav::widget([
+//        'options' => ['class' => 'navbar-nav'],
+//        'items' => $item
+//    ]);
+//    NavBar::end();
+//    ?>
+<!--</header>-->
+
+<header>
     <?php
     NavBar::begin([
-        'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
+        'options' => [
+            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
+        ],
     ]);
-
-    $item=[['label' => 'Pronuntia', 'url' => ['/site/index']],
-            ['label' => 'Info', 'url' => ['/site/info']],
-        ['label' => 'Registrati', 'url' => ['/logopedista/create']],
-        ];
-
-        if(Yii::$app->user->isGuest){
-                array_push($item, ['label' => 'Login', 'url' => ['/site/login']]);
-            } else{
-                array_push($item,'<li>'. Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline']). Html::submitButton('Logout (' . Yii::$app->user->identity->email . ')',['class' => 'btn btn-link logout']).Html::endForm().'</li>');
-             }
+    $navItem = [
+        ['label' => 'Pronuntia', 'url' => ['/site/index']],
+    ];
+    if(Yii::$app->user->isGuest){
+        array_push($navItem, ['label' => 'Login', 'url' => ['/site/login']]);
+    } else{
+        array_push($navItem,'<li>'. Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline']). Html::submitButton('Logout (' . Yii::$app->user->identity->email . ')',['class' => 'btn btn-link logout']).Html::endForm().'</li>');
+    }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
-        'items' => $item
+        'items' => $navItem
     ]);
     NavBar::end();
     ?>
 </header>
+
+
 
 <main id="main" class="flex-shrink-0" role="main">
     <div class="container">

@@ -23,7 +23,7 @@ use yii\grid\GridView;
 //    Yii::$app->end();
 //}
 
-//$user = Yii::$app->user->identity;
+//$model = Yii::$app->logopedista->identity;
 
 $this->title = 'Index Logopedista';
 $this->params['breadcrumbs'][] = $this->title;

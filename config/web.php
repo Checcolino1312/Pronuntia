@@ -26,6 +26,9 @@ $config = [
             'enableSession' => true,
             'authTimeout' => 60*30000,
             'loginUrl' => ['site/login'],
+            'identityCookie' => [
+                'name' => '_panelUser',
+            ]
         ],
 
         'logopedista' => [

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /** @var app\models\Caregiver $model */
 
 $this->title = 'Create Caregiver';
-$this->params['breadcrumbs'][] = ['label' => 'Caregivers', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Logopedista', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="caregiver-create">

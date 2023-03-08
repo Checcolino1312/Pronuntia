@@ -18,6 +18,8 @@ use yii\filters\VerbFilter;
  */
 class LogopedistaController extends Controller
 {
+
+    public $layout = '@app/views/layouts/logopedista';
     const STATUS_ACTIVE = 1;
 
     private static function findOne(array $array)
@@ -104,8 +106,11 @@ class LogopedistaController extends Controller
         $model = new Caregiver();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post())) {
+                $model->id_logopedista = Yii::$app->logopedista->getIdentity()->getId();
+            if( $model->save()) {
                 return $this->redirect(['index']);
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -168,7 +173,7 @@ class LogopedistaController extends Controller
             $dataProvider->query->andWhere(['id' => Yii::$app->logopedista->id]);
 
 //            return $this->redirect(['index']);
-            return $this->render('index', [
+            return $this->render('/logopedista/index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
                 'model' => $model,

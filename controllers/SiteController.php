@@ -80,7 +80,14 @@ class SiteController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             if($model->_user instanceof Logopedista){
-                return $this->redirect(array('/logopedista'));
+             return $this->redirect(array('/logopedista'));
+
+
+//                return $this->render('/logopedista/index',[
+//                    $model->id_logopedista = Yii::$app->logopedista->getIdentity()->getId()
+//                ]);
+
+
             }
             if($model->_user instanceof Caregiver){
                 return $this->redirect(array('/caregiver'));
