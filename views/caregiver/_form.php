@@ -7,8 +7,8 @@ use yii\widgets\ActiveForm;
 /** @var app\models\Caregiver $model */
 /** @var yii\widgets\ActiveForm $form */
 
-$value = $_GET['id'];
-$model->id_logopedista = $value;
+//$value = $_GET['id'];
+//$model->id_logopedista = $value;
 
 ?>
 
@@ -26,7 +26,9 @@ $model->id_logopedista = $value;
 
     <?= $form->field($model, 'cellulare')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'id_logopedista')->hiddenInput()->label(false); ?>
+    <?= $form->field($model, 'id_logopedista')->textInput(['maxlength' => true]) ?>
+
+<!--    --><?//= $form->field($model, 'id_logopedista')->hiddenInput()->label(false); ?>
 
 
     <div class="form-group">

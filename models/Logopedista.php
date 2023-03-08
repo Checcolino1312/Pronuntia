@@ -120,5 +120,9 @@ class Logopedista extends \yii\db\ActiveRecord implements IdentityInterface
         throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
     }
 
+    public static function findByEmail($email) {
+        return self::findOne(['email' => $email]);
+    }
+
 
 }

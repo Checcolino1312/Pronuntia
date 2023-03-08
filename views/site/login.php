@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+    <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 
     <?= $form->field($model, 'password')->passwordInput() ?>
 
@@ -40,8 +40,5 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php ActiveForm::end(); ?>
 
-    <div class="col-lg-offset-1" style="color:#999;">
-        Puoi accedere con <strong>admin/admin</strong> o <strong>demo/demo</strong>.<br>
-        Per modificare nome utente e password, controlla il codice in <code>app\models\User::$users</code>.
-    </div>
+
 </div>

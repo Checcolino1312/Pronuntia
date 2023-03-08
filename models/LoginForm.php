@@ -16,7 +16,7 @@ class LoginForm extends Model
     public $password;
     public $rememberMe = true;
 
-    private $_user = false;
+    public $_user = false;
 
 
     /**
@@ -59,9 +59,12 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
-            //return Yii::$app->user->login($this->getUser());
+            if($this->getUser() instanceof Logopedista) {
+                return Yii::$app->logopedista->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            }
+            if($this->getUser() instanceof Caregiver) {
+                return Yii::$app->caregiver->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            }
         }
         return false;
     }
@@ -69,23 +72,19 @@ class LoginForm extends Model
     /**
      * Finds user by [[username]]
      *
-     * @return User|null
+     * @return Caregiver
      */
     public function getUser()
     {
-        if ($this->_user === false) {
-            $logopedista = Logopedista::findOne(['email' => $this->email]);
-            if ($logopedista !== null) {
-                $this->_user = $logopedista;
-            } else {
-                $caregiver = Caregiver::findOne(['email' => $this->email]);
-                if ($caregiver !== null) {
-                    $this->_user = $caregiver;
-                }
-            }
+        $this->_user = Caregiver::findByEmail($this->email);
+        if($this->_user instanceof Caregiver) {
+            return $this->_user;
         }
 
-        return $this->_user;
+        $this->_user = Logopedista::findByEmail($this->email);
+        if($this->_user instanceof Logopedista) {
+            return $this->_user;
+        }
     }
 
 

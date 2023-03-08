@@ -23,7 +23,7 @@ use yii\grid\GridView;
 //    Yii::$app->end();
 //}
 
-$user = Yii::$app->user->identity;
+//$user = Yii::$app->user->identity;
 
 $this->title = 'Index Logopedista';
 $this->params['breadcrumbs'][] = $this->title;
@@ -52,6 +52,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 </div>
-<?= Html::a('Crea CareGiver', ['create_caregiver', 'id' => Yii::$app->user->id], ['class' => 'btn btn-primary']) ?>
+<?= Html::a('Crea CareGiver', ['create_caregiver'], ['class' => 'btn btn-primary']) ?>
 
 <!--<p><a class="btn btn-lg btn-success" href="/logopedista/create_assistito">Aggiungi Assistito &raquo;</a></p>-->

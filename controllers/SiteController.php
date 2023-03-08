@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\Caregiver;
+use app\models\Logopedista;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -71,13 +73,18 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-//        if (!Yii::$app->user->isGuest) {
-//            return $this->goHome();
-//        }
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->redirect(['index']);
+            if($model->_user instanceof Logopedista){
+                return $this->redirect(array('/logopedista'));
+            }
+            if($model->_user instanceof Caregiver){
+                return $this->redirect(array('/caregiver'));
+            }
         }
 
         $model->password = '';
@@ -86,18 +93,18 @@ class SiteController extends Controller
         ]);
     }
 
-
     /**
      * Logout action.
      *
      * @return Response
      */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
+            public function actionLogout()
+            {
+                Yii::$app->user->logout();
 
-        return $this->goHome();
-    }
+                return $this->goHome();
+            }
+
 
     /**
      * Displays contact page.
