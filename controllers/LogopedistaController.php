@@ -165,14 +165,14 @@ class LogopedistaController extends Controller
             $model->rememberMe = true;
             $searchModel = new LogopedistaSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            $dataProvider->query->andWhere(['id' => Yii::$app->user->id]);
+            $dataProvider->query->andWhere(['id' => Yii::$app->logopedista->id]);
 
 //            return $this->redirect(['index']);
             return $this->render('index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
                 'model' => $model,
-                'isGuest' => Yii::$app->user->isGuest,
+                'isGuest' => Yii::$app->logopedista->isGuest,
             ]);
         }
 

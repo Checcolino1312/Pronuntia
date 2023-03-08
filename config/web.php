@@ -20,9 +20,28 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\logopedista',
-            'enableAutoLogin' => true,
+            'class'=>'yii\web\User',
+            'identityClass' => 'app\models\User',
+            'enableAutoLogin' => false,
             'enableSession' => true,
+            'authTimeout' => 60*30000,
+            'loginUrl' => ['site/login'],
+        ],
+
+        'logopedista' => [
+            'class'=>'yii\web\User',
+            'identityClass' => 'app\models\Logopedista',
+            'enableAutoLogin' => true,
+            'authTimeout' => 60*30000,
+            'loginUrl' => ['logopedista/login'],
+
+        ],
+        'caregiver' => [
+            'class'=>'yii\web\User',
+            'identityClass' => 'app\models\Caregiver',
+            'authTimeout' => 60*30000,
+            'loginUrl' => ['caregiver/login'],
+            'enableAutoLogin' => true,
         ],
 
         'session' => [

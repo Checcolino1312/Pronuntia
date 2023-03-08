@@ -47,6 +47,9 @@ class CaregiverController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+
+
+
     }
 
     /**
@@ -140,14 +143,16 @@ class CaregiverController extends Controller
             $model->rememberMe = true;
             $searchModel = new CaregiverSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            $dataProvider->query->andWhere(['id' => Yii::$app->user->id]);
+            $dataProvider->query->andWhere(['id' => Yii::$app->caregiver->id]);
 
 //            return $this->redirect(['index']);
             return $this->render('index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
+
                 'model' => $model,
-                'isGuest' => Yii::$app->user->isGuest,
+                'isGuest' => Yii::$app->caregiver->isGuest,
+
             ]);
         }
 
