@@ -136,11 +136,9 @@ class LogopedistaController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
 
-                return $this->render('index', [
-                    'model' => $model,
-                    'id' => $value,
+                Yii::$app->session->setFlash('id', $value);
+                return Yii::$app->response->redirect(['/logopedista/index']);
 
-                ]);
             }
         } else {
             $model->loadDefaultValues();

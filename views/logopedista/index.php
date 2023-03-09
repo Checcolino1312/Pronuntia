@@ -39,7 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <!--    <h1>Benvenuto logopedista con ID --><?php //= Yii::$app->request->get('id') ?><!-- </-->
 <?php echo 'Il tuo ID è: ' . $id; ?>
-    <?php echo 'Il tuo ID è: ' . $value; ?>
 
 
 
