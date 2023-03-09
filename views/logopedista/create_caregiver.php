@@ -9,8 +9,8 @@ use yii\widgets\ActiveForm;
 $this->title = 'Create Caregiver';
 $this->params['breadcrumbs'][] = ['label' => 'Logopedista', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-
-
+$id = Yii::$app->request->post('id');
+echo 'Il tuo ID è: ' . $id;
 ?>
 <div class="caregiver-create">
 
@@ -19,6 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--    --><?php //= $this->render('/caregiver/_form', [
 //        'model' => $model,
 //    ]) ?>
+
+
         <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
@@ -33,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <!--    --><?php //= $form->field($model, 'id_logopedista')->hiddenInput()->label(false);?>
 
-<!--        --><?php //= $form->field($model, 'id_logopedista')->hiddenInput(['value' => $id])->label(false) ?>
+        <?= $form->field($model, 'id_logopedista')->hiddenInput(['value' => $id])->label(false) ?>
 
 
 

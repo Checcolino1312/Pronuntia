@@ -43,6 +43,8 @@ class Caregiver extends \yii\db\ActiveRecord implements IdentityInterface
             [['nome', 'cognome', 'email', 'password', 'cellulare', 'id_logopedista'], 'required'],
             [['id_logopedista'], 'integer'],
             [['nome', 'cognome', 'email', 'password', 'cellulare'], 'string', 'max' => 255],
+            [['id_logopedista'], 'exist', 'skipOnError' => true, 'targetClass' => Logopedista::class, 'targetAttribute' => ['id_logopedista' => 'id']],
+
         ];
     }
 

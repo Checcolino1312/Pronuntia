@@ -11,6 +11,7 @@ use yii\grid\GridView;
 
 
 
+
 /** @var yii\web\View $this */
 /** @var app\models\LogopedistaSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
@@ -24,7 +25,7 @@ use yii\grid\GridView;
 //}
 
 
-//$id = Yii::$app->request->post('id');
+
 $id = Yii::$app->session->getFlash('id');
 
 
@@ -38,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <!--    <h1>Benvenuto logopedista con ID --><?php //= Yii::$app->request->get('id') ?><!-- </-->
 <?php echo 'Il tuo ID è: ' . $id; ?>
-
+    <?php echo 'Il tuo ID è: ' . $value; ?>
 
 
 
