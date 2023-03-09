@@ -20,7 +20,7 @@ class LoginForm extends Model
     /**
      * @var mixed
      */
-    public $id_logopedista;
+    public $id;
 
 
     /**

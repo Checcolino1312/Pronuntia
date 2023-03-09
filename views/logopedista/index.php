@@ -23,7 +23,11 @@ use yii\grid\GridView;
 //    Yii::$app->end();
 //}
 
-//$model = Yii::$app->logopedista->identity;
+
+//$id = Yii::$app->request->post('id');
+$id = Yii::$app->session->getFlash('id');
+
+
 
 $this->title = 'Index Logopedista';
 $this->params['breadcrumbs'][] = $this->title;
@@ -32,7 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-
+<!--    <h1>Benvenuto logopedista con ID --><?php //= Yii::$app->request->get('id') ?><!-- </-->
+<?php echo 'Il tuo ID è: ' . $id; ?>
 
 
 
@@ -52,6 +57,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 </div>
-<?= Html::a('Crea CareGiver', ['create_caregiver'], ['class' => 'btn btn-primary']) ?>
-
+<?php //= Html::a('Crea CareGiver', ['create_caregiver'], ['class' => 'btn btn-primary']) ?>
+<!---->
 <!--<p><a class="btn btn-lg btn-success" href="/logopedista/create_assistito">Aggiungi Assistito &raquo;</a></p>-->
+<?= Html::beginForm(['create_caregiver'], 'post') ?>
+<?= Html::hiddenInput('id', $id) ?>
+<?= Html::submitButton('Crea CareGiver', ['class' => 'btn btn-primary']) ?>
+<?= Html::endForm() ?>

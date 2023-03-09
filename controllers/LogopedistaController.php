@@ -101,16 +101,39 @@ class LogopedistaController extends Controller
         ]);
     }
 
+//    public function actionCreate_caregiver()
+//    {
+//        $id = Yii::$app->request->post('id');
+//        $model = new Caregiver();
+//
+//        if ($this->request->isPost) {
+//            if ($model->load($this->request->post())) {
+//                if($model->save()){
+//                    return $this->render('create_caregiver', [
+//                    'model' => $model,
+//                    'id_logopedista' => $id,
+//                    ]);
+//                }
+//            }
+//        } else {
+//            $model->loadDefaultValues();
+//        }
+//
+//        return $this->render('create_caregiver', [
+//            'model' => $model,
+//
+//        ]);
+//
+//    }
     public function actionCreate_caregiver()
     {
         $model = new Caregiver();
+        $model->id_logopedista = Yii::$app->session->post('id');
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                $model->id_logopedista = Yii::$app->logopedista->getIdentity()->getId();
-            if( $model->save()) {
+            if ($model->load($this->request->post()) && $model->save()) {
+
                 return $this->redirect(['index']);
-                }
             }
         } else {
             $model->loadDefaultValues();
@@ -119,7 +142,7 @@ class LogopedistaController extends Controller
         return $this->render('create_caregiver', [
             'model' => $model,
         ]);
-          //return $this->render('create_caregiver');
+        //return $this->render('create_caregiver');
 
 
     }

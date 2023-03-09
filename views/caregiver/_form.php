@@ -26,7 +26,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'cellulare')->textInput(['maxlength' => true]) ?>
 
-<!--   giusto --><?php //= $form->field($model, 'id_logopedista')->textInput(['maxlength' => true]) ?>
+<!--    --><?php //= $form->field($model, 'id_logopedista')->hiddenInput()->label(false);?>
+    <?= $form->field($model, 'id_logopedista')->hiddenInput(['value' => $id])->label(false) ?>
 
 
 
