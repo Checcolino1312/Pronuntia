@@ -38,6 +38,7 @@ AppAsset::register($this);
         $navItem = [
 //            ['label' => 'Bambini', 'url' => ['/logopedista/vedi-bambini']],
             ['label' => 'Crea Caregivers', 'url' => ['/logopedista/create_caregiver']],
+            ['label' => 'Vedi Caregivers', 'url' => ['/logopedista/vedi-caregiver']],
 //            ['label' => 'Esercizi', 'url' => ['/logopedista/vedi-esercizi']],
         ];
         if(Yii::$app->logopedista->isGuest){

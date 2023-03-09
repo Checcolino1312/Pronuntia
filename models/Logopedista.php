@@ -17,6 +17,7 @@ use yii\web\IdentityInterface;
  * @property string $email
  * @property string $password
  * @property string $conferma_password
+ * @property Caregiver[] $caregivers
  */
 class Logopedista extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -105,6 +106,10 @@ class Logopedista extends \yii\db\ActiveRecord implements IdentityInterface
     public function generateAuthKey()
     {
         $this->auth_key = Yii::$app->security->generateRandomString();
+    }
+    public function getCaregivers()
+    {
+        return $this->hasMany(Caregiver::class, ['logopedista_id' => 'id']);
     }
 
     public function validateAuthKey($authKey)

@@ -3,9 +3,10 @@
 namespace app\controllers;
 
 use app\models\Caregiver;
+use app\models\CaregiverSearch;
 use app\models\LoginForm;
 use app\models\LogopedistaSearch;
-use Codeception\Lib\Interfaces\ActiveRecord;
+
 use Yii;
 use app\models\Logopedista;
 use yii\web\Controller;
@@ -120,7 +121,16 @@ class LogopedistaController extends Controller
 
     }
 
+    public function actionVediCaregiver()
+    {
+        $searchModel = new CaregiverSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
 
+        return $this->render('vedi-caregiver', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 
 
 

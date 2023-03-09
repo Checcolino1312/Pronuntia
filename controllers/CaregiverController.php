@@ -48,8 +48,6 @@ class CaregiverController extends Controller
             'dataProvider' => $dataProvider,
         ]);
 
-
-
     }
 
     /**
