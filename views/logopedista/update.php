@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var app\models\Logopedista $model */
+/** @var app\models\Caregiver $model */
 
 $this->title = 'Update Logopedista: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Logopedistas', 'url' => ['index']];

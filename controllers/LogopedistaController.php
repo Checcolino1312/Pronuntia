@@ -137,23 +137,44 @@ class LogopedistaController extends Controller
 
     public function actionView($id){
 
-        return $this->render('view', ['model' => Logopedista::findOne($id)]);
+        return $this->render('view', ['model' => Caregiver::findOne($id)]);
     }
 
-    public function actionViewIndex($id)
-    {
-        $model = Logopedista::find()
-            ->select(['nome', 'cognome', 'email']) // seleziona solo alcuni campi
-            ->where(['id' => $id])
-            ->one();
+//    public function actionViewIndex($id)
+//    {
+//        $model = Logopedista::find()
+//            ->select(['nome', 'cognome', 'email']) // seleziona solo alcuni campi
+//            ->where(['id' => $id])
+//            ->one();
+//
+//        return $this->render('view', [
+//            'model' => $model,
+//        ]);
+//    }
 
-        return $this->render('view', [
+    public function actionUpdate($id)
+    {
+        $model = Caregiver::findOne($id);
+
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
+            if($model->save()){
+                return $this->redirect(['vedi-caregiver', 'id_caregiver' => $model->id]);
+            }
+        }
+
+        return $this->render('update', [
             'model' => $model,
         ]);
     }
 
 
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
 
+        return $this->redirect(['index']);
+    }
 
     public function actionLogin(){
 
