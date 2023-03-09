@@ -94,16 +94,16 @@ class LogopedistaController extends Controller
 //    }
     public function actionCreate_caregiver()
     {
-        $value = Yii::$app->request->post('id');
+        $id = Yii::$app->request->post('id');
         $model = new Caregiver();
 
 
-        $model->id_logopedista = $value;
+        $model->id_logopedista = $id;
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
 
-                Yii::$app->session->setFlash('id', $value);
+//                Yii::$app->session->set('id', $id);
                 return Yii::$app->response->redirect(['/logopedista/index']);
 
             }

@@ -98,8 +98,8 @@ class SiteController extends Controller
 
 //                return $this->redirect(['/logopedista/index', 'id' => Yii::$app->logopedista->getIdentity()->getId()]);
 
-                Yii::$app->session->setFlash('id', Yii::$app->logopedista->getIdentity()->getId());
-                Yii::$app->session->setFlash('cognome', Yii::$app->logopedista->getIdentity()->getCognome());
+                Yii::$app->session->set('id', Yii::$app->logopedista->getIdentity()->getId());
+                Yii::$app->session->set('cognome', Yii::$app->logopedista->getIdentity()->getCognome());
 //                Yii::$app->session->setFlash('valori', [
 //                    'id' => Yii::$app->logopedista->getIdentity()->getId(),
 //                    'nome' => Yii::$app->logopedista->getIdentity()->getNome(),

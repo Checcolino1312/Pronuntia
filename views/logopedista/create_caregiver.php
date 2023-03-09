@@ -9,9 +9,12 @@ use yii\widgets\ActiveForm;
 $this->title = 'Create Caregiver';
 $this->params['breadcrumbs'][] = ['label' => 'Logopedista', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-$id = Yii::$app->request->post('id');
+
+
+$id = Yii::$app->session->get('id');
+
 echo 'Il tuo ID è: ' . $id;
-Yii::$app->session->set('id', $id);
+
 ?>
 <div class="caregiver-create">
 

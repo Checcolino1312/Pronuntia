@@ -31,10 +31,12 @@ use yii\grid\GridView;
 //$nome = $valori['nome'];
 //$cognome = $valori['cognome'];
 
-$cognome = Yii::$app->session->getFlash('cognome');
-$id= Yii::$app->session->getFlash('id');
 
-Yii::$app->session->set('id', $id);
+
+$cognome = Yii::$app->session->get('cognome');
+$id = Yii::$app->session->get('id');
+
+
 
 $this->title = 'Index Logopedista';
 $this->params['breadcrumbs'][] = $this->title;
