@@ -30,52 +30,19 @@ class LogopedistaController extends Controller
     /**
      * {@inheritdoc}
      */
-//    public function behaviors()
-//    {
-//        return [
-//            'verbs' => [
-//                'class' => VerbFilter::className(),
-//                'actions' => [
-//                    'delete' => ['POST'],
-//                ],
-//            ],
-//        ];
-//    }
-//    public function behaviors()
-//    {
-//        return [
-//            'access' => [
-//                'class' => \yii\filters\AccessControl::className(),
-//                'only' => ['logopedista/index'],
-//                'rules' => [
-//                    [
-//                        'allow' => true,
-//                        'roles' => ['@'],
-//                    ],
-//                ],
-//            ],
-//        ];
-//    }
-    public function behaviors()
+
+    protected function findModel($id)
     {
-        return [
-            'access' => [
-                'class' => \yii\filters\AccessControl::className(),
-                'only' => ['/logopedista/index'],
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
+        if (($model = Logopedista::findOne(['id' => $id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionIndex() {
+        return $this->render('index');
+
     }
 
 
@@ -154,19 +121,6 @@ class LogopedistaController extends Controller
     }
 
 
-    public function actionIndex()
-    {
-        $searchModel = new LogopedistaSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-
-
-
-        ]);
-    }
 
 
 

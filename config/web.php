@@ -36,7 +36,7 @@ $config = [
             'identityClass' => 'app\models\Logopedista',
             'enableAutoLogin' => true,
             'authTimeout' => 60*30000,
-            'loginUrl' => ['logopedista/login'],
+            'loginUrl' => ['site-logopedista/login'],
 
         ],
         'caregiver' => [

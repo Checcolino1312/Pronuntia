@@ -27,6 +27,10 @@ class __Application {
     /**
      * @var mixed|object|null
      */
+    /**
+     * @var mixed|object|null
+     */
+
 }
 
 /**

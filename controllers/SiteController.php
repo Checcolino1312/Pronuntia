@@ -10,7 +10,13 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
+
+
+
+
+
+
+
 
 class SiteController extends Controller
 {
@@ -21,7 +27,7 @@ class SiteController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::class,
+                'class' => AccessControl::className(),
                 'only' => ['logout'],
                 'rules' => [
                     [
@@ -32,7 +38,7 @@ class SiteController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::class,
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
                 ],
@@ -59,10 +65,17 @@ class SiteController extends Controller
     /**
      * Displays homepage.
      *
-     * @return string
+     * @return string|Response
      */
     public function actionIndex()
     {
+        if(Yii::$app->logopedista->getIdentity() instanceof Logopedista){
+            return $this->redirect(array('/logopedista'));
+        }
+        if(Yii::$app->caregiver->getIdentity() instanceof Caregiver){
+            return $this->redirect(array('/caregiver'));
+        }
+
         return $this->render('index');
     }
 
@@ -122,57 +135,16 @@ class SiteController extends Controller
             }
 
 
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    public function actionContact()
+    public function beforeAction($action)
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
-
-    public function actionInfo()
-    {
-        return $this->render('info');
-    }
-    public function actionAccedi()
-    {
-        return $this->render('accedi');
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
     }
 
 
-    public function actionSignup()
-    {
-        $model = new SignupForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Registration successful.');
-            return $this->goHome();
-        }
 
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
-    }
+
 
 
 

@@ -11,6 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Logopedista', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $id = Yii::$app->request->post('id');
 echo 'Il tuo ID è: ' . $id;
+Yii::$app->session->set('id', $id);
 ?>
 <div class="caregiver-create">
 
