@@ -79,7 +79,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            if($model->_user instanceof Logopedista){
+            if($model->_user instanceof Logopedista) {
 //             return $this->redirect(array('/logopedista'));
 
 
@@ -96,9 +96,6 @@ class SiteController extends Controller
                 return Yii::$app->response->redirect(['/logopedista/index']);
 
 
-            }
-            else {
-                $model->loadDefaultValues();
             }
 
             if($model->_user instanceof Caregiver){
