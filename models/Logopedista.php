@@ -27,6 +27,16 @@ class Logopedista extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->getPrimaryKey();
     }
+
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    public function getCognome()
+    {
+        return $this->cognome;
+    }
     /**
      * {@inheritdoc}
      */

@@ -26,7 +26,13 @@ use yii\grid\GridView;
 
 
 
-$id = Yii::$app->session->getFlash('id');
+//$valori = Yii::$app->session->getFlash('valori');
+//$id = $valori['id'];
+//$nome = $valori['nome'];
+//$cognome = $valori['cognome'];
+
+$cognome = Yii::$app->session->getFlash('cognome');
+$id= Yii::$app->session->getFlash('id');
 
 
 
@@ -38,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
 <!--    <h1>Benvenuto logopedista con ID --><?php //= Yii::$app->request->get('id') ?><!-- </-->
-<?php echo 'Il tuo ID è: ' . $id; ?>
+<?php echo 'Benvenuto dott. ' . $cognome . '  con ID:' . $id; ?>
 
 
 

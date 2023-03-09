@@ -86,10 +86,21 @@ class SiteController extends Controller
 //                return $this->redirect(['/logopedista/index', 'id' => Yii::$app->logopedista->getIdentity()->getId()]);
 
                 Yii::$app->session->setFlash('id', Yii::$app->logopedista->getIdentity()->getId());
+                Yii::$app->session->setFlash('cognome', Yii::$app->logopedista->getIdentity()->getCognome());
+//                Yii::$app->session->setFlash('valori', [
+//                    'id' => Yii::$app->logopedista->getIdentity()->getId(),
+//                    'nome' => Yii::$app->logopedista->getIdentity()->getNome(),
+//                    'cognome' => Yii::$app->logopedista->getIdentity()->getCognome(),
+//                ]);
+
                 return Yii::$app->response->redirect(['/logopedista/index']);
 
 
             }
+            else {
+                $model->loadDefaultValues();
+            }
+
             if($model->_user instanceof Caregiver){
                 return $this->redirect(array('/caregiver'));
             }
