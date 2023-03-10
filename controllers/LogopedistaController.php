@@ -127,10 +127,12 @@ class LogopedistaController extends Controller
         $searchModel = new CaregiverSearch();
         $dataProvider= $searchModel->search($this->request->queryParams);
 
-        // Aggiungere una condizione per filtrare solo i caregiver del logopedista loggato
 
+        $query = Caregiver::find()->where(['id_logopedista' => Yii::$app->session->get('id')]);
 
-
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 
         return $this->render('vedi-caregiver', [
             'searchModel' => $searchModel,
