@@ -15,9 +15,9 @@ use yii\filters\VerbFilter;
  */
 class CaregiverController extends Controller
 {
-    /**
-     * @inheritDoc
-     */
+    public $layout = '@app/views/layouts/caregiver';
+    const STATUS_ACTIVE = 1;
+
     public function behaviors()
     {
         return array_merge(
