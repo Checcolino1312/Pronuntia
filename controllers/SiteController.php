@@ -108,6 +108,7 @@ class SiteController extends Controller
                 Yii::$app->session->set('id', Yii::$app->caregiver->getIdentity()->getId());
                 Yii::$app->session->set('cognome', Yii::$app->caregiver->getIdentity()->getCognome());
                 Yii::$app->session->set('email', Yii::$app->caregiver->getIdentity()->getEmail());
+                Yii::$app->session->set('id_logopedista', Yii::$app->caregiver->getIdentity()->getIdLogopedista());
 
                 return $this->redirect(array('/caregiver/index'));
             }

@@ -37,6 +37,10 @@ class Caregiver extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->cognome;
     }
+    public function getIdLogopedista()
+    {
+        return $this->id_logopedista;
+    }
     public static function tableName()
     {
         return 'caregiver';

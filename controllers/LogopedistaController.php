@@ -232,30 +232,7 @@ class LogopedistaController extends Controller
 
 
 
-    public function actionLogin(){
 
-        $model = new LoginForm();
-
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            $model->rememberMe = true;
-            $searchModel = new LogopedistaSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            $dataProvider->query->andWhere(['id' => Yii::$app->logopedista->id]);
-
-//            return $this->redirect(['index']);
-            return $this->render('/logopedista/index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-                'model' => $model,
-                'isGuest' => Yii::$app->logopedista->isGuest,
-            ]);
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }
 
 
 

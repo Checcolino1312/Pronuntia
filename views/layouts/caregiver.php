@@ -37,9 +37,8 @@ AppAsset::register($this);
         ]);
         $navItem = [
 
-//            ['label' => 'Bambini', 'url' => ['/logopedista/vedi-bambini']],
-//            ['label' => 'Crea Caregivers', 'url' => ['/logopedista/create_caregiver']],
-            ['label' => 'Vedi Logopedisti', 'url' => ['/caregiver/vedi-logopedisti']],
+
+            ['label' => 'Vedi Logopedista', 'url' => ['/caregiver/vedi-logopedista']],
             ['label' => 'Vedi Assistiti', 'url' => ['/caregiver/vedi-assistiti']],
             ['label' => 'Logout (' . Yii::$app->session->get('email'). ')', 'url' => ['caregiver/logout']],
 //            ['label' => 'Esercizi', 'url' => ['/logopedista/vedi-esercizi']],

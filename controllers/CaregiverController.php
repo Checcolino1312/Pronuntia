@@ -2,10 +2,15 @@
 
 namespace app\controllers;
 
+use app\models\Assistito;
+use app\models\AssistitoSearch;
 use app\models\Caregiver;
 use app\models\LoginForm;
 use app\models\CaregiverSearch;
+use app\models\LogopedistaSearch;
+use app\models\Logopedista;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -48,6 +53,13 @@ class CaregiverController extends Controller
             'dataProvider' => $dataProvider,
         ]);
 
+    }
+
+    public function actionLogout()
+    {
+        Yii::$app->caregiver->logout();
+
+        return $this->redirect(['site/index']);
     }
 
     /**
@@ -132,31 +144,51 @@ class CaregiverController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function actionVediLogopedista()
+    {
+        $searchModel = new LogopedistaSearch();
+        $dataProvider= $searchModel->search($this->request->queryParams);
 
-    public function actionLogin(){
 
-        $model = new LoginForm();
+        $query = Logopedista::find()->where(['id' => Yii::$app->session->get('id_logopedista')]);
 
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            $model->rememberMe = true;
-            $searchModel = new CaregiverSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            $dataProvider->query->andWhere(['id' => Yii::$app->caregiver->id]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 
-//            return $this->redirect(['index']);
-            return $this->render('index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
+        return $this->render('vedi-logopedista', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
 
-                'model' => $model,
-                'isGuest' => Yii::$app->caregiver->isGuest,
-
-            ]);
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
         ]);
     }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+public function actionVediAssistiti()
+{
+    $searchModel = new AssistitoSearch();
+    $dataProvider= $searchModel->search($this->request->queryParams);
+
+
+    $query = Assistito::find()->where(['id_caregiver' => Yii::$app->session->get('id')]);
+
+    $dataProvider = new ActiveDataProvider([
+        'query' => $query,
+    ]);
+
+    return $this->render('vedi-assistiti', [
+        'searchModel' => $searchModel,
+        'dataProvider' => $dataProvider,
+
+    ]);
+}
+
+
 }
