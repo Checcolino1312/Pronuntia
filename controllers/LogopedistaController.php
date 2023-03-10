@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Assistito;
 use app\models\Caregiver;
 use app\models\CaregiverSearch;
 use app\models\LoginForm;
@@ -48,9 +49,6 @@ class LogopedistaController extends Controller
     }
 
 
-
-
-
     /**
      * Creates a new Logopedista model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -94,11 +92,17 @@ class LogopedistaController extends Controller
 //        ]);
 //
 //    }
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function actionCreate_caregiver()
     {
         $id = Yii::$app->request->post('id');
         $model = new Caregiver();
-
 
         $model->id_logopedista = $id;
 
@@ -117,8 +121,6 @@ class LogopedistaController extends Controller
             'model' => $model,
 
         ]);
-
-
 
     }
 
@@ -142,24 +144,11 @@ class LogopedistaController extends Controller
     }
 
 
-
-
     public function actionView($id){
 
         return $this->render('view', ['model' => Caregiver::findOne($id)]);
     }
 
-//    public function actionViewIndex($id)
-//    {
-//        $model = Logopedista::find()
-//            ->select(['nome', 'cognome', 'email']) // seleziona solo alcuni campi
-//            ->where(['id' => $id])
-//            ->one();
-//
-//        return $this->render('view', [
-//            'model' => $model,
-//        ]);
-//    }
 
     public function actionUpdate($id)
     {
@@ -177,12 +166,45 @@ class LogopedistaController extends Controller
         ]);
     }
 
-
     public function actionDelete($id)
     {
         Caregiver::findOne($id)->delete();
         return $this->redirect(['vedi-caregiver']);
     }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function actionCreate_assistito($id_caregiver)
+    {
+        $model = new Assistito();
+        $id = Yii::$app->session->get('id');
+
+
+        $model->id_logopedista = $id;
+        $model->id_caregiver = $id_caregiver;
+
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post())) {
+
+                if($model->save()){
+
+                return $this->redirect(['vedi-caregiver']);
+               }
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('create_assistito', [
+            'model' => $model,
+
+        ]);
+
+    }
+
+
+
 
     public function actionLogin(){
 

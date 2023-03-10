@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\base\NotSupportedException;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "assistito".
@@ -31,11 +33,13 @@ class Assistito extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'nome', 'cognome', 'eta', 'diagnosi', 'id_logopedista', 'id_caregiver'], 'required'],
-            [['id', 'eta', 'id_logopedista', 'id_caregiver'], 'integer'],
-            [['diagnosi'], 'string'],
+            [['nome', 'cognome', 'eta', 'diagnosi', 'id_logopedista', 'id_caregiver'], 'required'],
+            [['eta', 'id_logopedista', 'id_caregiver'], 'integer'],
             [['nome', 'cognome'], 'string', 'max' => 255],
-            [['id'], 'unique'],
+            [['id_logopedista'], 'exist', 'skipOnError' => true, 'targetClass' => Logopedista::class, 'targetAttribute' => ['id_logopedista' => 'id']],
+            [['id_caregiver'], 'exist', 'skipOnError' => true, 'targetClass' => Caregiver::class, 'targetAttribute' => ['id_caregiver' => 'id']],
+
+
         ];
     }
 
@@ -54,4 +58,7 @@ class Assistito extends \yii\db\ActiveRecord
             'id_caregiver' => 'Id Caregiver',
         ];
     }
+
+
+
 }

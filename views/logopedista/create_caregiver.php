@@ -20,10 +20,6 @@ echo 'Il tuo ID è: ' . $id;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-<!--    --><?php //= $this->render('/caregiver/_form', [
-//        'model' => $model,
-//    ]) ?>
-
 
         <?php $form = ActiveForm::begin(); ?>
 
@@ -37,8 +33,6 @@ echo 'Il tuo ID è: ' . $id;
 
         <?= $form->field($model, 'cellulare')->textInput(['maxlength' => true]) ?>
 
-        <!--    --><?php //= $form->field($model, 'id_logopedista')->hiddenInput()->label(false);?>
-
         <?= $form->field($model, 'id_logopedista')->hiddenInput(['value' => $id])->label(false) ?>
 
 
@@ -49,7 +43,6 @@ echo 'Il tuo ID è: ' . $id;
         </div>
 
         <?php ActiveForm::end(); ?>
-
 
 
 
