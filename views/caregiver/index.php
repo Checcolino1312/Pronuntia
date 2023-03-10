@@ -16,13 +16,9 @@ use yii\widgets\DetailView;
 $cognome = Yii::$app->session->get('cognome');
 $id = Yii::$app->session->get('id');
 
-$this->title = 'Caregivers';
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="caregiver-index">
-
-
-
 
 
 

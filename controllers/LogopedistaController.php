@@ -93,7 +93,7 @@ class LogopedistaController extends Controller
             if ($model->load($this->request->post()) && $model->save()) {
 
 //                Yii::$app->session->set('id', $id);
-                return Yii::$app->response->redirect(['vedi-caregiver']);
+                return Yii::$app->response->redirect(['logopedista/vedi-caregiver']);
 
             }
         } else {
@@ -138,7 +138,7 @@ class LogopedistaController extends Controller
         return $this->render('dettaglio_caregiver', ['model' => Caregiver::findOne($id)]);
     }
 
-    public function actionUpdate($id)
+    public function actionModifica_caregiver($id)
     {
         $model = Caregiver::findOne($id);
 
@@ -149,16 +149,17 @@ class LogopedistaController extends Controller
             }
         }
 
-        return $this->render('update', [
+        return $this->render('modifica_caregiver', [
             'model' => $model,
         ]);
     }
 
-    public function actionDelete($id)
+    public function actionElimina_caregiver($id)
     {
         Caregiver::findOne($id)->delete();
         return $this->redirect(['vedi-caregiver']);
     }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -216,7 +217,27 @@ class LogopedistaController extends Controller
     }
 
 
+    public function actionModifica_assistito($id)
+    {
+        $model = Assistito::findOne($id);
 
+        if ($this->request->isPost && $model->load($this->request->post())) {
+
+            if($model->save()){
+                return $this->redirect(['vedi-assistiti', 'id_assistito' => $model->id]);
+            }
+        }
+
+        return $this->render('modifica_assistito', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionElimina_assistito($id)
+    {
+        Assistito::findOne($id)->delete();
+        return $this->redirect(['vedi-assistiti']);
+    }
 
 
 

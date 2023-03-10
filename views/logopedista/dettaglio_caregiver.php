@@ -26,11 +26,11 @@ $this->params['breadcrumbs'][] = ['label' => 'Dettaglio', 'url' => ['view', 'id'
 
     <h1>Dettaglio Caregiver n.<?= Html::encode($model->id) ?></h1>
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Modifica dati', ['modifica_caregiver', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Elimina', ['elimina_caregiver', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'ei sicuro di voler eliminare questo assistito?',
                 'method' => 'post',
             ],
         ]) ?>

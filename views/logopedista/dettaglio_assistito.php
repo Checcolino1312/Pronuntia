@@ -26,11 +26,11 @@ $this->params['breadcrumbs'][] = ['label' => 'Dettaglio', 'url' => ['view', 'id'
 
     <h1>Dettaglio Assistito n.<?= Html::encode($model->id) ?></h1>
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Modifica dati', ['modifica_assistito', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Elimina', ['elimina_assistito', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Sei sicuro di voler eliminare questo assistito?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Dettaglio', 'url' => ['view', 'id'
             'cognome',
             'eta',
             'diagnosi',
-            'cellulare',
+//            'cellulare',
 
         ],
     ]) ?>
