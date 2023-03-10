@@ -61,7 +61,7 @@ AppAsset::register($this);
         ['label' => 'Pronuntia', 'url' => ['/site/index']],
     ];
     if(Yii::$app->user->isGuest){
-        array_push($navItem, ['label' => 'Login', 'url' => ['/site/login']]);
+        array_push($navItem, ['label' => 'Login', 'url' => ['/site/login']],['label' => 'Registrati', 'url' => ['/site/create']]);
     } else{
         array_push($navItem,'<li>'. Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline']). Html::submitButton('Logout (' . Yii::$app->user->identity->email . ')',['class' => 'btn btn-link logout']).Html::endForm().'</li>');
     }

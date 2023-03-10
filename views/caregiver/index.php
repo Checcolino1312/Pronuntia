@@ -15,6 +15,7 @@ use yii\widgets\DetailView;
 
 $cognome = Yii::$app->session->get('cognome');
 $id = Yii::$app->session->get('id');
+$this->title = 'Caregiver Home';
 
 
 ?>

@@ -22,7 +22,7 @@ $cognome = Yii::$app->session->get('cognome');
 $id = Yii::$app->session->get('id');
 
 
-
+$this->title = 'Logopedista Home';
 
 
 ?>
@@ -30,7 +30,7 @@ $id = Yii::$app->session->get('id');
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-<!--    <h1>Benvenuto logopedista con ID --><?php //= Yii::$app->request->get('id') ?><!-- </-->
+
 <?php echo 'Benvenuto dott. ' . $cognome . '  con ID:' . $id; ?>
 
 
@@ -42,7 +42,5 @@ $id = Yii::$app->session->get('id');
 
 
 </div>
-<?php //= Html::a('Crea CareGiver', ['create_caregiver'], ['class' => 'btn btn-primary']) ?>
-<!---->
-<!--<p><a class="btn btn-lg btn-success" href="/logopedista/create_assistito">Aggiungi Assistito &raquo;</a></p>-->
+
 

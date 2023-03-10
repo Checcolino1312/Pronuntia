@@ -79,6 +79,20 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionCreate()
+    {
+        $model = new Logopedista();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['login']);
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Login action.
      *
