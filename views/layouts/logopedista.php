@@ -28,17 +28,19 @@ AppAsset::register($this);
     <header>
         <?php
         NavBar::begin([
-            'brandLabel' => 'Home',
-            'brandUrl' => Yii::$app->homeUrl,
+            'brandLabel' => 'Pronuntia',
+            'brandUrl' => 'index',
             'options' => [
                 'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
 
             ],
         ]);
         $navItem = [
+
 //            ['label' => 'Bambini', 'url' => ['/logopedista/vedi-bambini']],
             ['label' => 'Crea Caregivers', 'url' => ['/logopedista/create_caregiver']],
             ['label' => 'Vedi Caregivers', 'url' => ['/logopedista/vedi-caregiver']],
+            ['label' => 'Logout (' . Yii::$app->session->get('email'). ')', 'url' => ['/index']],
 //            ['label' => 'Esercizi', 'url' => ['/logopedista/vedi-esercizi']],
         ];
         if(Yii::$app->logopedista->isGuest){

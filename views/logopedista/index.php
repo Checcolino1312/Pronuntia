@@ -16,21 +16,6 @@ use yii\grid\GridView;
 /** @var app\models\LogopedistaSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-// Verifica se l'utente è autenticato
-//if (Yii::$app->user->isGuest){
-//    // L'utente non è autenticato, redirect alla pagina di accesso
-//    Yii::$app->response->redirect(['logopedista/login']);
-//
-//    Yii::$app->end();
-//}
-
-
-
-//$valori = Yii::$app->session->getFlash('valori');
-//$id = $valori['id'];
-//$nome = $valori['nome'];
-//$cognome = $valori['cognome'];
-
 
 
 $cognome = Yii::$app->session->get('cognome');
@@ -38,8 +23,8 @@ $id = Yii::$app->session->get('id');
 
 
 
-$this->title = 'Index Logopedista';
-$this->params['breadcrumbs'][] = $this->title;
+
+
 ?>
 <div class="logopedista-index">
 
@@ -48,15 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--    <h1>Benvenuto logopedista con ID --><?php //= Yii::$app->request->get('id') ?><!-- </-->
 <?php echo 'Benvenuto dott. ' . $cognome . '  con ID:' . $id; ?>
 
-
-
-<?php //Html::a('Create Logopedista', ['create'], ['class' => 'btn btn-success']) ?>
-<!---->
-<!---->
-<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-<!---->
-<!--    <h4>Benvenuto Dott.</h4> <h1>--><?php //= $model->nome ?><!--</h1>-->
-<!--    <p>Email: --><?php //= $model->email ?><!--</p>-->
 
 
 
@@ -68,7 +44,4 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php //= Html::a('Crea CareGiver', ['create_caregiver'], ['class' => 'btn btn-primary']) ?>
 <!---->
 <!--<p><a class="btn btn-lg btn-success" href="/logopedista/create_assistito">Aggiungi Assistito &raquo;</a></p>-->
-<?= Html::beginForm(['create_caregiver'], 'post') ?>
-<?= Html::hiddenInput('id', $id) ?>
-<?= Html::submitButton('Crea CareGiver', ['class' => 'btn btn-primary']) ?>
-<?= Html::endForm() ?>
+

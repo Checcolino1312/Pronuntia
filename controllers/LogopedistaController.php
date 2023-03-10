@@ -110,7 +110,7 @@ class LogopedistaController extends Controller
             if ($model->load($this->request->post()) && $model->save()) {
 
 //                Yii::$app->session->set('id', $id);
-                return Yii::$app->response->redirect(['/logopedista/index']);
+                return Yii::$app->response->redirect(['vedi-caregiver']);
 
             }
         } else {

@@ -100,6 +100,7 @@ class SiteController extends Controller
 
                 Yii::$app->session->set('id', Yii::$app->logopedista->getIdentity()->getId());
                 Yii::$app->session->set('cognome', Yii::$app->logopedista->getIdentity()->getCognome());
+                Yii::$app->session->set('email', Yii::$app->logopedista->getIdentity()->getEmail());
 //                Yii::$app->session->setFlash('valori', [
 //                    'id' => Yii::$app->logopedista->getIdentity()->getId(),
 //                    'nome' => Yii::$app->logopedista->getIdentity()->getNome(),

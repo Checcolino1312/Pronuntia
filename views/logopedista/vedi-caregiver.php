@@ -14,10 +14,16 @@ use app\controllers\LogopedistaController;
 
 $this->title = 'Tutti i caregiver';
 $this->params['breadcrumbs'][] = $this->title;
+$id = Yii::$app->session->get('id');
 ?>
 <div class="caregiver-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+
+    <?= Html::beginForm(['create_caregiver'], 'post') ?>
+    <?= Html::hiddenInput('id', $id) ?>
+    <?= Html::submitButton('Crea CareGiver', ['class' => 'btn btn-primary']) ?>
+    <?= Html::endForm() ?>
 
     <table class="table">
         <thead>
