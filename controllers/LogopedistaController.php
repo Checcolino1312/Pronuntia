@@ -143,6 +143,12 @@ class LogopedistaController extends Controller
         ]);
     }
 
+    public function actionLogout()
+    {
+        Yii::$app->logopedista->logout();
+
+        return $this->redirect(['site/index']);
+    }
 
     public function actionView($id){
 
