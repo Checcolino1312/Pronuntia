@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Assistito;
+use app\models\AssistitoSearch;
 use app\models\Caregiver;
 use app\models\CaregiverSearch;
 use app\models\LoginForm;
@@ -68,31 +69,13 @@ class LogopedistaController extends Controller
         ]);
     }
 
-//    public function actionCreate_caregiver()
-//    {
-//        $id = Yii::$app->request->post('id');
-//        $model = new Caregiver();
-//
-//        if ($this->request->isPost) {
-//            if ($model->load($this->request->post())) {
-//                if($model->save()){
-//                    return $this->render('create_caregiver', [
-//                    'model' => $model,
-//                    'id_logopedista' => $id,
-//                    ]);
-//                }
-//            }
-//        } else {
-//            $model->loadDefaultValues();
-//        }
-//
-//        return $this->render('create_caregiver', [
-//            'model' => $model,
-//
-//        ]);
-//
-//    }
 
+    public function actionLogout()
+    {
+        Yii::$app->logopedista->logout();
+
+        return $this->redirect(['site/index']);
+    }
 
 
 
@@ -143,12 +126,7 @@ class LogopedistaController extends Controller
         ]);
     }
 
-    public function actionLogout()
-    {
-        Yii::$app->logopedista->logout();
 
-        return $this->redirect(['site/index']);
-    }
 
     public function actionView($id){
 
@@ -208,6 +186,41 @@ class LogopedistaController extends Controller
         ]);
 
     }
+
+
+    public function actionVediAssistito()
+    {
+        $searchModel = new AssistitoSearch();
+        $dataProvider= $searchModel->search($this->request->queryParams);
+
+
+        $query = Assistito::find()->where(['id_logopedista' => Yii::$app->session->get('id')]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $this->render('vedi-assistito', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
