@@ -28,7 +28,15 @@ class Caregiver extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->getPrimaryKey();
     }
+    public function getEmail()
+    {
+        return $this->email;
+    }
 
+    public function getCognome()
+    {
+        return $this->cognome;
+    }
     public static function tableName()
     {
         return 'caregiver';

@@ -93,19 +93,11 @@ class SiteController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             if($model->_user instanceof Logopedista) {
-//             return $this->redirect(array('/logopedista'));
-
-
-//                return $this->redirect(['/logopedista/index', 'id' => Yii::$app->logopedista->getIdentity()->getId()]);
 
                 Yii::$app->session->set('id', Yii::$app->logopedista->getIdentity()->getId());
                 Yii::$app->session->set('cognome', Yii::$app->logopedista->getIdentity()->getCognome());
                 Yii::$app->session->set('email', Yii::$app->logopedista->getIdentity()->getEmail());
-//                Yii::$app->session->setFlash('valori', [
-//                    'id' => Yii::$app->logopedista->getIdentity()->getId(),
-//                    'nome' => Yii::$app->logopedista->getIdentity()->getNome(),
-//                    'cognome' => Yii::$app->logopedista->getIdentity()->getCognome(),
-//                ]);
+
 
                 return Yii::$app->response->redirect(['/logopedista/index']);
 
@@ -113,7 +105,11 @@ class SiteController extends Controller
             }
 
             if($model->_user instanceof Caregiver){
-                return $this->redirect(array('/caregiver'));
+                Yii::$app->session->set('id', Yii::$app->caregiver->getIdentity()->getId());
+                Yii::$app->session->set('cognome', Yii::$app->caregiver->getIdentity()->getCognome());
+                Yii::$app->session->set('email', Yii::$app->caregiver->getIdentity()->getEmail());
+
+                return $this->redirect(array('/caregiver/index'));
             }
         }
 

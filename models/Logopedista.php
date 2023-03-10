@@ -32,7 +32,8 @@ class Logopedista extends \yii\db\ActiveRecord implements IdentityInterface
     public function getNome()
     {
         return $this->nome;
-    }   public function getEmail()
+    }
+    public function getEmail()
     {
         return $this->email;
     }
