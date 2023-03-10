@@ -180,9 +180,8 @@ class LogopedistaController extends Controller
 
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        Caregiver::findOne($id)->delete();
+        return $this->redirect(['vedi-caregiver']);
     }
 
     public function actionLogin(){

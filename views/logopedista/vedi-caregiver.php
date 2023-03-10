@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= yii\helpers\Html::a('Crea Assistito', ['update', 'id' => $model->id], ['class' => 'btn btn-success', 'title' => 'Crea Assistito']) ?>
                     <?= yii\helpers\Html::a('Modifica', ['update', 'id' => $model->id], ['class' => 'btn btn-primary', 'title' => 'Modifica']) ?>
                     <?= yii\helpers\Html::a('Visualizza', ['view', 'id' => $model->id], ['class' => 'btn btn-info', 'title' => 'Visualizza']) ?>
-                    <?= yii\helpers\Html::a('Elimina', ['delete', 'id' => $model->id], ['class' => 'btn btn-danger', 'title' => 'Elimina', 'data-confirm' => 'Sei sicuro di voler eliminare questo elemento?', 'data-method' => 'post']) ?>
+                    <?= yii\helpers\Html::a('Elimina', ['delete','id'=>$model->id], ['title' => 'Elimina','class'=>'btn btn-danger', 'data' => ['confirm' => 'Sicuro di voler eliminare quest\' elemento?', 'method' => 'post', ],]); ?>
                 </td>
             </tr>
         <?php endforeach; ?>
