@@ -15,15 +15,16 @@ use yii\widgets\DetailView;
 
 
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Tutti i caregivers', 'url' => ['vedi-caregiver']];
+
+$this->title = 'Dettaglio';
+//$this->params['breadcrumbs'][] = ['label' => 'Tutti i caregivers', 'url' => ['vedi-caregiver']];
 $this->params['breadcrumbs'][] = ['label' => 'Dettaglio', 'url' => ['view', 'id' => $model->id]];
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="logopedista-view">
 
 
-    <h1>Dettaglio Caregiver n.<?= Html::encode($this->title) ?></h1>
+    <h1>Dettaglio n.<?= Html::encode($model->id) ?></h1>
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -45,6 +46,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Dettaglio', 'url' => ['view', 'id'
             'id',
             'nome',
             'cognome',
+            'eta',
             'email:email',
            // 'password',
             'cellulare',
