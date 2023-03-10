@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Dettaglio', 'url' => ['view', 'id'
 <div class="logopedista-view">
 
 
-    <h1>Dettaglio n.<?= Html::encode($model->id) ?></h1>
+    <h1>Dettaglio Assistito n.<?= Html::encode($model->id) ?></h1>
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
