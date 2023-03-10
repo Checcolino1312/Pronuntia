@@ -9,6 +9,7 @@ use app\models\LogopedistaSearch;
 
 use Yii;
 use app\models\Logopedista;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\IdentityInterface;
 use yii\web\NotFoundHttpException;
@@ -124,11 +125,17 @@ class LogopedistaController extends Controller
     public function actionVediCaregiver()
     {
         $searchModel = new CaregiverSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider= $searchModel->search($this->request->queryParams);
+
+        // Aggiungere una condizione per filtrare solo i caregiver del logopedista loggato
+
+
+
 
         return $this->render('vedi-caregiver', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+
         ]);
     }
 
