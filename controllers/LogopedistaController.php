@@ -128,10 +128,10 @@ class LogopedistaController extends Controller
 
 
 
-    public function actionView($id){
-
-        return $this->render('view');
-    }
+//    public function actionView($id){
+//
+//        return $this->render('view');
+//    }
 
     public function actionDettaglio_caregiver($id){
 
@@ -212,7 +212,7 @@ class LogopedistaController extends Controller
     }
     public function actionDettaglio_assistito($id){
 
-        return $this->render('view', ['model' => Assistito::findOne($id)]);
+        return $this->render('dettaglio_assistito', ['model' => Assistito::findOne($id)]);
     }
 
 
