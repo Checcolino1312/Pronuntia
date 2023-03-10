@@ -188,7 +188,7 @@ class LogopedistaController extends Controller
     }
 
 
-    public function actionVediAssistito()
+    public function actionVediAssistiti()
     {
         $searchModel = new AssistitoSearch();
         $dataProvider= $searchModel->search($this->request->queryParams);
@@ -200,7 +200,7 @@ class LogopedistaController extends Controller
             'query' => $query,
         ]);
 
-        return $this->render('vedi-assistito', [
+        return $this->render('vedi-assistiti', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
 
