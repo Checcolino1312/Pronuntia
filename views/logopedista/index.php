@@ -34,7 +34,8 @@ $id = Yii::$app->session->get('id');
 <?php echo 'Benvenuto dott. ' . $cognome . '  con ID:' . $id; ?>
 
 
-
+</br>
+    <h1 class="display-4">Benvenuto dott. <?php echo $cognome; ?> con ID: <?php echo $id; ?></h1>
 
 
 

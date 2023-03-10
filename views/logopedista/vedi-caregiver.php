@@ -22,9 +22,9 @@ $id = Yii::$app->session->get('id');
 
     <?= Html::beginForm(['create_caregiver'], 'post') ?>
     <?= Html::hiddenInput('id', $id) ?>
-    <?= Html::submitButton('Crea CareGiver', ['class' => 'btn btn-primary']) ?>
+    <?= Html::submitButton('Crea CareGiver', ['class' => 'btn btn-warning']) ?>
     <?= Html::endForm() ?>
-
+    </br></br></br>
     <table class="table">
         <thead>
         <tr>
