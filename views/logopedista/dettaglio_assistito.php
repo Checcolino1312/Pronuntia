@@ -17,7 +17,7 @@ use yii\widgets\DetailView;
 
 
 $this->title = 'Dettaglio';
-//$this->params['breadcrumbs'][] = ['label' => 'Tutti i caregivers', 'url' => ['vedi-caregiver']];
+$this->params['breadcrumbs'][] = ['label' => 'Tutti gli assistiti', 'url' => ['vedi-assistiti']];
 $this->params['breadcrumbs'][] = ['label' => 'Dettaglio', 'url' => ['view', 'id' => $model->id]];
 \yii\web\YiiAsset::register($this);
 ?>

@@ -135,7 +135,7 @@ class LogopedistaController extends Controller
 
     public function actionDettaglio_caregiver($id){
 
-        return $this->render('view', ['model' => Caregiver::findOne($id)]);
+        return $this->render('dettaglio_caregiver', ['model' => Caregiver::findOne($id)]);
     }
 
     public function actionUpdate($id)
