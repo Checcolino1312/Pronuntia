@@ -6,6 +6,7 @@ use app\models\Assistito;
 use app\models\AssistitoSearch;
 use app\models\Caregiver;
 use app\models\CaregiverSearch;
+use app\models\Esercizio;
 use app\models\LoginForm;
 use app\models\LogopedistaSearch;
 
@@ -16,6 +17,7 @@ use yii\web\Controller;
 use yii\web\IdentityInterface;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * LogopedistaController implements the CRUD actions for Logopedista model.
@@ -227,9 +229,48 @@ class LogopedistaController extends Controller
         return $this->redirect(['vedi-assistiti']);
     }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function actionCrea_esercizio()
+    {
+        $model = new Esercizio();
 
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()) {
+                $nameim = UploadedFile::getInstance($model,'immagine');
+                $nameau = UploadedFile::getInstance($model,'audio');
 
+                $pathim = 'uploads/'.md5($nameim->baseName).'.'.$nameim->extension;
+                $pathau = 'uploads/'.md5($nameau->baseName).'.'.$nameau->extension;
 
+                if($nameim->saveAs($pathim) && $nameau->saveAs($pathau)){
+
+                    $model->immagine = $nameim->baseName.'.'.$nameim->extension;
+                    $model->audio = $nameau->baseName.'.'.$nameau->extension;
+
+                    $model->immagine_filepath = $pathim;
+                    $model->audio_filepath = $pathau;
+
+                    //l'esercizio viene associato al logopedista che l' ha creato
+                    $model->id_logopedista = Yii::$app->session->get('id');
+                    if($model->save()){
+                        return $this->redirect(['index']);
+                    }
+                }
+            }
+        }
+        return $this->render('crea_esercizio', [
+            'model' => $model,
+        ]);
+
+    }
+
+    public function actionVedi_esercizi()
+    {
+        $data = Esercizio::find()->all();
+        return $this->render('vedi_esercizi', ['esercizi'=>$data]);
+    }
 
 
 

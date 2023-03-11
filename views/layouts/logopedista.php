@@ -41,6 +41,7 @@ AppAsset::register($this);
 //            ['label' => 'Crea Caregivers', 'url' => ['/logopedista/create_caregiver']],
             ['label' => 'Vedi Caregivers', 'url' => ['/logopedista/vedi-caregiver']],
             ['label' => 'Vedi Assistiti', 'url' => ['/logopedista/vedi-assistiti']],
+            ['label' => 'Esercizi', 'url' => ['/logopedista/vedi_esercizi']],
             ['label' => 'Logout (' . Yii::$app->session->get('email'). ')', 'url' => ['logopedista/logout']],
 //            ['label' => 'Esercizi', 'url' => ['/logopedista/vedi-esercizi']],
         ];
