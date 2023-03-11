@@ -32,7 +32,8 @@ class Esercizio extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['titolo'], 'required'],
+            [['titolo','descrizione'], 'required'],
+            [['immagine'], 'file', 'extensions' => 'jpg,jpeg, png', 'mimeTypes' => 'image/jpeg, image/png',],
             [['descrizione', 'immagine', 'audio'], 'string'],
             [['descrizione', 'immagine'], 'string'],
             [['id_logopedista'], 'integer'],

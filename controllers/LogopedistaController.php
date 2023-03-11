@@ -7,6 +7,7 @@ use app\models\AssistitoSearch;
 use app\models\Caregiver;
 use app\models\CaregiverSearch;
 use app\models\Esercizio;
+use app\models\EsercizioSearch;
 use app\models\LoginForm;
 use app\models\LogopedistaSearch;
 
@@ -268,8 +269,21 @@ class LogopedistaController extends Controller
 
     public function actionVedi_esercizi()
     {
-        $data = Esercizio::find()->all();
-        return $this->render('vedi_esercizi', ['esercizi'=>$data]);
+        $searchModel = new EsercizioSearch();
+        $dataProvider= $searchModel->search($this->request->queryParams);
+
+
+        $query = Esercizio::find()->where(['id_logopedista' => Yii::$app->session->get('id')]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $this->render('vedi_esercizi', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+
+        ]);
     }
 
 

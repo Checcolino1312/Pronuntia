@@ -18,8 +18,9 @@ $this->params['breadrumbs'][] = $this->title;
     <?= $form->field($model, 'titolo')->textInput() ?>
     <?= $form->field($model, 'descrizione')->textInput() ?>
 
-    <?= $form->field($model, 'immagine')->fileInput() ?>
-    <?= $form->field($model, 'audio')->fileInput() ?>
+    <?= $form->field($model, 'immagine')->fileInput(['accept' => 'image/jpeg, image/png, image/jpg', 'required'=>'true']) ?>
+
+    <?= $form->field($model, 'audio')->fileInput(['accept' => 'audio/mpeg', 'required'=>'true']) ?>
 
 
     <div class="form-group">
