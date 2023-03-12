@@ -7,6 +7,7 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\web\YiiAsset;
+use yii\widgets\ActiveForm;
 use yii\widgets\DetailView;
 use app\controllers\LogopedistaController;
 
@@ -21,7 +22,23 @@ $id = Yii::$app->session->get('id');
 
         <h1><?= Html::encode($this->title) ?></h1>
 
-        </br></br></br>
+        </br>
+        <div class="row">
+            <div class="col-md-4">
+                <?php $form = ActiveForm::begin(['method' => 'get', 'action' => ['vedi-assistiti']]); ?>
+                <?= $form->field($searchModel, 'nome')->textInput(['placeholder' => 'Cerca per nome'])->label(false) ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($searchModel, 'cognome')->textInput(['placeholder' => 'Cerca per cognome'])->label(false) ?>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <?= Html::submitButton('Cerca', ['class' => 'btn btn-primary']) ?>
+                </div>
+                <?php ActiveForm::end(); ?>
+            </div>
+        </div>
+        </br></br>
         <table class="table">
             <thead>
             <tr>
@@ -45,9 +62,9 @@ $id = Yii::$app->session->get('id');
                     <td style="text-align: center;">
                         <?php if ($model->id_caregiver): ?>
                             <?php
-                            $query = Caregiver::find()
-                                ->select(['nome', 'cognome']);
-                            $caregiver = $query->one();
+                            $caregiver = Caregiver::findOne($model->id_caregiver);
+
+
                             echo $caregiver->nome . ' ' . $caregiver->cognome;
                             ?>
                         <?php endif; ?>

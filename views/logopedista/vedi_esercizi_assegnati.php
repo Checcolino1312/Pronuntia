@@ -61,7 +61,7 @@ $cognome = $assistito->cognome;
                             </div>
                     <?php if($assegnazione->eseguito){
                         echo "<h6 style='color:green;'>" . "ESEGUITO </h6>";
-//                        echo "<p style='color:#FF8000;'>" . "Valutato: $assegnazione->valutazione su 5</p>";
+//
                     }
                     else{
 //                        echo "<h6 style='color:red;'>" . "NON ESEGUITO </h6>";
