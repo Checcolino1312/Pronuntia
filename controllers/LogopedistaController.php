@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\Assegnazione;
 use app\models\Assistito;
 use app\models\AssistitoSearch;
+use app\models\Bambino;
 use app\models\Caregiver;
 use app\models\CaregiverSearch;
 use app\models\Esercizio;
@@ -310,7 +312,53 @@ class LogopedistaController extends Controller
 
 
 
+    public function actionAssegna_esercizi($id)
+    {
+        $assistito = Assistito::findOne($id);
 
+        return $this->render('assegna_esercizi', [
+            'assistito' => $assistito,
+        ]);
+    }
+    public function actionCrea_assegnazione($id_assistito, $id_esercizio)
+    {
+        $assistito = Assistito::findOne($id_assistito);
+        $model = new Assegnazione();
+        $model->id_esercizio = $id_esercizio;
+        $model->id_assistito = $id_assistito;
+
+        if ($model->save()) {
+            $assegnazioni = $assistito->assegnazioni;
+            return $this->render('assegna_esercizi', [
+                'assegnazioni' => $assegnazioni,
+                'assistito' => $assistito,
+            ]);
+        }
+
+        return $this->render('assegna_esercizi', [
+            'id_assistito' => $id_assistito,
+            'assistito' => $assistito,
+        ]);
+    }
+
+
+    public function actionVedi_esercizi_assegnati($assistito_id)
+    {
+        $assistito = Assistito::findOne($assistito_id);
+        $assegnazioni = $assistito->assegnazioni;
+
+        return $this->render('vedi_esercizi_assegnati', [
+            'assegnazioni' => $assegnazioni,
+            'assistito' => $assistito,
+        ]);
+    }
+
+    public function actionEliminaAssegnazione($assistito_id, $assegnazione_id)
+    {
+        Assegnazione::findOne($assegnazione_id)->delete();
+
+        return $this->redirect(['vedi_esercizi_assegnati', 'assistito_id' => $assistito_id]);
+    }
 
 
 

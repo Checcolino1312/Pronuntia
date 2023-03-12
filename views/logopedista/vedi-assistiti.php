@@ -54,9 +54,14 @@ $id = Yii::$app->session->get('id');
                     </td>
 
                     <td style="text-align: center;">
+                        <?= yii\helpers\Html::a('Assegna esercizi', ['assegna_esercizi', 'id' => $model->id], ['class' => 'btn btn-success', 'title' => 'Assegna esercizi']) ?>
+                        <?= yii\helpers\Html::a('Vedi esercizi assegnati', ['vedi_esercizi_assegnati', 'assistito_id' => $model->id], ['class' => 'btn btn-warning', 'title' => 'Assegna esercizi']) ?>
+
+                        <?= yii\helpers\Html::a('Visualizza', ['dettaglio_assistito', 'id' => $model->id], ['class' => 'btn btn-info', 'title' => 'Visualizza']) ?>
 
                         <?= yii\helpers\Html::a('Modifica', ['modifica_assistito', 'id' => $model->id], ['class' => 'btn btn-primary', 'title' => 'Modifica']) ?>
-                        <?= yii\helpers\Html::a('Visualizza', ['dettaglio_assistito', 'id' => $model->id], ['class' => 'btn btn-info', 'title' => 'Visualizza']) ?>
+
+
                         <?= yii\helpers\Html::a('Elimina', ['elimina_assistito','id'=>$model->id], ['title' => 'Elimina','class'=>'btn btn-danger', 'data' => ['confirm' => 'Sicuro di voler eliminare quest\' elemento?', 'method' => 'post', ],]); ?>
                     </td>
                 </tr>

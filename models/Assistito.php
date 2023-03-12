@@ -16,6 +16,9 @@ use yii\web\IdentityInterface;
  * @property string $diagnosi
  * @property int $id_logopedista
  * @property int $id_caregiver
+ *
+ *
+ * @property Assegnazione[] $assegnazioni
  */
 class Assistito extends \yii\db\ActiveRecord
 {
@@ -59,7 +62,10 @@ class Assistito extends \yii\db\ActiveRecord
         ];
     }
 
-
+    public function getAssegnazioni()
+    {
+        return $this->hasMany(Assegnazione::class, ['id_assistito' => 'id']);
+    }
 
 
 }
