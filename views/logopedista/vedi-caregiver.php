@@ -6,6 +6,7 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\web\YiiAsset;
+use yii\widgets\ActiveForm;
 use yii\widgets\DetailView;
 use app\controllers\LogopedistaController;
 
@@ -24,7 +25,24 @@ $id = Yii::$app->session->get('id');
     <?= Html::hiddenInput('id', $id) ?>
     <?= Html::submitButton('Crea CareGiver', ['class' => 'btn btn-warning']) ?>
     <?= Html::endForm() ?>
-    </br></br></br>
+    </br>
+    </br>
+    <div class="row">
+        <div class="col-md-4">
+            <?php $form = ActiveForm::begin(['method' => 'get', 'action' => ['vedi-caregiver']]); ?>
+            <?= $form->field($searchModel, 'nome')->textInput(['placeholder' => 'Cerca per nome'])->label(false) ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($searchModel, 'cognome')->textInput(['placeholder' => 'Cerca per cognome'])->label(false) ?>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <?= Html::submitButton('Cerca', ['class' => 'btn btn-primary']) ?>
+            </div>
+            <?php ActiveForm::end(); ?>
+        </div>
+    </div>
+    </br></br>
     <table class="table">
         <thead>
         <tr>

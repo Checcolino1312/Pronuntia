@@ -108,6 +108,13 @@ class LogopedistaController extends Controller
 
         $query = Caregiver::find()->where(['id_logopedista' => Yii::$app->session->get('id')]);
 
+        if ($searchModel->nome) {
+            $query->andWhere(['like', 'nome', $searchModel->nome]);
+        }
+        if ($searchModel->cognome) {
+            $query->andWhere(['like', 'cognome', $searchModel->cognome]);
+        }
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
