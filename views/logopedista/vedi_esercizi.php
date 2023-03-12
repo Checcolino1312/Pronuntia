@@ -7,10 +7,11 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Esercizio */
 /* @var $form ActiveForm */
-$this->title = "Vedi esercizio";
-$this->params['breadrumbs'][] = $this->title;
 
+$this->title = "Esercizi";
+$this->params['breadrumbs'][] = $this->title;
 ?>
+
 </br></br>
 <?= Html::a('Crea Esercizio', ['logopedista/crea_esercizio'], ['class' => 'btn btn-primary']) ?>
 </br></br>
@@ -28,7 +29,9 @@ $this->params['breadrumbs'][] = $this->title;
                                             <source src="<?php echo Yii::getAlias('@web').'/'.$model->audio_filepath;?>" type="audio/mpeg">
                                             Your browser does not support the audio element.
                                         </audio>
-<!--                                    --><?php //echo Html::a('Elimina', ['elimina-esercizio', 'id' => $model->id], ['class' => 'btn btn-danger', 'data' => ['confirm' => 'Sicuro di voler eliminare quest\' elemento?', 'method' => 'post', ]]); ?>
+                                       </br>
+                                        <?= yii\helpers\Html::a('Modifica', ['modifica_esercizio', 'id' => $model->id], ['class' => 'btn btn-primary', 'title' => 'Modifica']) ?>
+                                    <?php echo Html::a('Elimina', ['elimina_esercizio', 'id' => $model->id], ['class' => 'btn btn-danger', 'data' => ['confirm' => 'Sicuro di voler eliminare quest\' elemento?', 'method' => 'post', ]]); ?>
                                     </div>
                     </div>
             </div>

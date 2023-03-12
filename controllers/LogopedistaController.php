@@ -256,7 +256,7 @@ class LogopedistaController extends Controller
                     //l'esercizio viene associato al logopedista che l' ha creato
                     $model->id_logopedista = Yii::$app->session->get('id');
                     if($model->save()){
-                        return $this->redirect(['index']);
+                        return $this->redirect(['vedi_esercizi']);
                     }
                 }
             }
@@ -286,9 +286,27 @@ class LogopedistaController extends Controller
         ]);
     }
 
+    public function actionModifica_esercizio($id)
+    {
+        $model = Esercizio::findOne($id);
 
+        if ($this->request->isPost && $model->load($this->request->post())) {
 
+            if($model->save()){
+                return $this->redirect(['vedi_esercizi']);
+            }
+        }
 
+        return $this->render('modifica_esercizio', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionElimina_esercizio($id)
+    {
+        Esercizio::findOne($id)->delete();
+        return $this->redirect(['vedi_esercizi']);
+    }
 
 
 
