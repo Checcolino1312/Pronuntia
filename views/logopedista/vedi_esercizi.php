@@ -8,12 +8,13 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Esercizio */
 /* @var $form ActiveForm */
 
-$this->title = "Esercizi";
+$this->title = "Dashboard esercizi";
 $this->params['breadrumbs'][] = $this->title;
 ?>
+<h1><?= Html::encode($this->title) ?></h1>
 
-</br></br>
-<?= Html::a('Crea Esercizio', ['logopedista/crea_esercizio'], ['class' => 'btn btn-primary']) ?>
+</br>
+<?= Html::a('Crea Esercizio', ['logopedista/crea_esercizio'], ['class' => 'btn btn-success']) ?>
 </br></br>
 <div class="container">
     <div class="row">

@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Assistito;
+use app\models\Caregiver;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -29,6 +30,7 @@ $id = Yii::$app->session->get('id');
                 <th style="text-align: center;">Cognome</th>
                 <th style="text-align: center;">Età</th>
                 <th style="text-align: center;">Diagnosi</th>
+                <th style="text-align: center;">Caregiver</th>
                 <th style="text-align: center;">Azioni</th>
             </tr>
             </thead>
@@ -40,6 +42,17 @@ $id = Yii::$app->session->get('id');
                     <td style="text-align: center;"><?= $model->cognome ?></td>
                     <td style="text-align: center;"><?= $model->eta ?></td>
                     <td style="text-align: center;"><?= $model->diagnosi ?></td>
+                    <td style="text-align: center;">
+                        <?php if ($model->id_caregiver): ?>
+                            <?php
+                            $query = Caregiver::find()
+                                ->select(['nome', 'cognome']);
+                            $caregiver = $query->one();
+                            echo $caregiver->nome . ' ' . $caregiver->cognome;
+                            ?>
+                        <?php endif; ?>
+                    </td>
+
                     <td style="text-align: center;">
 
                         <?= yii\helpers\Html::a('Modifica', ['modifica_assistito', 'id' => $model->id], ['class' => 'btn btn-primary', 'title' => 'Modifica']) ?>

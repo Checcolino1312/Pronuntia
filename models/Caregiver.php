@@ -41,6 +41,11 @@ class Caregiver extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->id_logopedista;
     }
+    public function getAssistiti()
+    {
+        return $this->hasMany(Assistito::className(), ['id_caregiver' => 'id']);
+    }
+
     public static function tableName()
     {
         return 'caregiver';

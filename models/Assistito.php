@@ -61,4 +61,5 @@ class Assistito extends \yii\db\ActiveRecord
 
 
 
+
 }

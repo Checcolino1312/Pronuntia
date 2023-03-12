@@ -16,7 +16,8 @@ $this->params['breadrumbs'][] = $this->title;
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'titolo')->textInput() ?>
-    <?= $form->field($model, 'descrizione')->textInput() ?>
+
+    <?= $form->field($model, 'descrizione')->textarea(['rows' => '3', 'class' => 'form-control']) ?>
 
     <?= $form->field($model, 'immagine')->label('Immagine (jpeg,png,jpg)')->fileInput(['accept' => 'image/jpeg, image/png, image/jpg', 'required'=>'true','class'=>'form-control custom-file' ]) ?>
 
