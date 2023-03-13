@@ -205,8 +205,8 @@ public function actionVediAssistiti()
 
         // Recupera i record delle assegnazioni per l'assistito corrente
         $query = $assegnazione::find()
-            ->where(['id_assistito' => $assistito_id])
-            ->andWhere(['eseguito' => 0]);
+            ->where(['id_assistito' => $assistito_id]);
+//            ->andWhere(['eseguito' => 0]);
 
         // Crea un oggetto ActiveDataProvider per gli esercizi correlati
         $dataProvider = new ActiveDataProvider([
@@ -216,8 +216,56 @@ public function actionVediAssistiti()
         // Renderizza la vista con i dati del DataProvider
         return $this->render('vedi_esercizi', [
             'dataProvider' => $dataProvider,
+            'id_assistito' =>$assistito_id,
+
         ]);
     }
+
+
+    public function actionSvolgi_esercizio($assistito_id, $esercizio_id)
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Esercizio::find()->where(['id' => $esercizio_id]),
+        ]);
+
+
+        // Recupera l'oggetto Assegnazione corrispondente all'assistito ed all'esercizio correnti
+        $assegnazione = Assegnazione::findOne(['id_assistito' => $assistito_id, 'id_esercizio' => $esercizio_id]);
+
+        if ($assegnazione !== null) {
+            // Imposta il valore di "eseguito" a 1
+            $assegnazione->eseguito = 1;
+            $assegnazione->save(false); // salva senza validazione
+        }
+
+        return $this->render('svolgi_esercizio', [
+            'dataProvider' => $dataProvider,
+            'id_assistito' =>$assistito_id,
+
+        ]);
+
+    }
+    public function actionEsercizio($assistito_id, $esercizio_id)
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Esercizio::find()->where(['id' => $esercizio_id]),
+        ]);
+
+
+        // Recupera l'oggetto Assegnazione corrispondente all'assistito ed all'esercizio correnti
+        $assegnazione = Assegnazione::findOne(['id_assistito' => $assistito_id, 'id_esercizio' => $esercizio_id]);
+
+
+        return $this->render('svolgi_esercizio', [
+            'dataProvider' => $dataProvider,
+            'id_assistito' =>$assistito_id,
+
+        ]);
+
+    }
+
+
+
 
 
 }

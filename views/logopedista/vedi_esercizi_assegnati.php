@@ -56,19 +56,20 @@ $cognome = $assistito->cognome;
                                                 'method' => 'post'
                                             ]
                                         ]);?>
+                                    </br>
+                                        <?php if($assegnazione->eseguito){
+                                            echo "<h6 style='color:green;'>" . "ESEGUITO </h6>";
+
+                                        }
+                                        else{
+                                            echo "<h6 style='color:red;'>" . "NON ESEGUITO </h6>";
+                                        }
+
+                                        ?>
                                       </div>
                                 </div>
                             </div>
-                    <?php if($assegnazione->eseguito){
-                        echo "<h6 style='color:green;'>" . "ESEGUITO </h6>";
-//
-                    }
-                    else{
-//                        echo "<h6 style='color:red;'>" . "NON ESEGUITO </h6>";
-                    }
-                    //rimuovi assegnazione
 
-                    ?>
 
 
         <?php

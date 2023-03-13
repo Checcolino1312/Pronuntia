@@ -32,7 +32,8 @@ $id = Yii::$app->session->get('id');
                 <th style="text-align: center;">Cognome</th>
                 <th style="text-align: center;">Età</th>
                 <th style="text-align: center;">Diagnosi</th>
-                <th style="text-align: center;">Esercizi assegnati</th>
+                <th style="text-align: center;">Esercizi svolti</th>
+                <th style="text-align: center;">STATO DEGLI ESERCIZI</th>
                 <th style="text-align: center;">Azioni</th>
             </tr>
             </thead>
@@ -43,14 +44,31 @@ $id = Yii::$app->session->get('id');
                 $query = new Query();
                 $query->from('assegnazione');
                 $query->where(['id_assistito' => $model->id]);
-                $count = $query->count();?>
+                $count = $query->count();
+
+                $query2 = new Query();
+                $query2->from('assegnazione');
+                $query2->where(['id_assistito' => $model->id])
+                    ->andWhere(['eseguito' => 1]);
+                $count2 = $query2->count();
+
+                ?>
                 <tr>
                     <td style="text-align: center;"><?= $index + 1 ?></td>
                     <td style="text-align: center;"><?= $model->nome ?></td>
                     <td style="text-align: center;"><?= $model->cognome ?></td>
                     <td style="text-align: center;"><?= $model->eta ?></td>
                     <td style="text-align: center;"><?= $model->diagnosi ?></td>
-                    <td style="text-align: center;"><?= $count ?></td>
+                    <td style="text-align: center;"><?= $count2.'/'.$count  ?></td>
+                    <td style="text-align: center;"><?php if($count2/$count == 1){
+                            echo '<div class="text-success"> TUTTI GLI ESERCIZI SONO STATI SVOLTI </div>';
+                        }
+                        else{
+                            echo '<p class="text-danger"> CI SONO ESERCIZI DA SVOLGERE </p>';
+                        }
+
+
+                        ?></td>
                     <td style="text-align: center;">
 
                         <?= yii\helpers\Html::a('Esercizi', ['vedi_esercizi', 'assistito_id' => $model->id], ['class' => 'btn btn-success', 'title' => 'Esercizi']) ?>
