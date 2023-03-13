@@ -1,5 +1,7 @@
 <?php
 
+use yii\bootstrap5\Modal;
+use yii\db\Query;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -17,7 +19,78 @@ $this->params['breadrumbs'][] = $this->title;
 ?>
 <h1><?= Html::encode($this->title) ?></h1>
 
-</br>
+<?php
+$query = new Query();
+$query->from('assegnazione');
+$query->where(['id_assistito' => $id_assistito]);
+$count = $query->count();
+
+$query2 = new Query();
+$query2->from('assegnazione');
+$query2->where(['id_assistito' => $id_assistito])
+    ->andWhere(['eseguito' => 1]);
+$count2 = $query2->count();
+?>
+
+
+<td style="text-align: center;"><?php if($count2/$count == 1){
+        echo '<h1 class="text-success"> TUTTI GLI ESERCIZI SONO STATI SVOLTI </h1>';
+//        Modal::begin([
+//            'title' => 'Modal Title',
+//            'toggleButton' => [
+//                'label' => 'ECCO IL TUO PREMIO!',
+//                'class' => 'btn btn-success',
+//            ],
+//        ]);
+//
+//// qui viene creato l'iframe
+//echo '<iframe src="https://www.youtube.com/watch?v=anDQEBF7f-o" width="100%" height="400"></iframe>';
+//
+//Modal::end();
+        Modal::begin([
+            'title' => 'CLICCA!',
+            'toggleButton' => [
+                'label' => '☆ ☆ ☆ PREMIO ☆ ☆ ☆',
+                'class' => 'btn btn-success',
+            ],
+        ]);
+// Anteprima del video
+        echo '<a href="https://www.youtube.com/embed/anDQEBF7f-o" class="video-link" data-toggle="modal" data-target="#video-modal"><img width="100%" height="300" src="https://img.youtube.com/vi/anDQEBF7f-o/maxresdefault.jpg" alt="Anteprima del video"></a>';
+
+        Modal::end();
+
+// Modale per la riproduzione del video
+        Modal::begin([
+            'title' => 'ECCO IL TUO PREMIO',
+            'id' => 'video-modal',
+            'size' => Modal::SIZE_LARGE,
+
+        ]);
+        echo '<div class="embed-responsive embed-responsive-16by9"><iframe width="100%" height="400" class="embed-responsive-item" src=""></iframe></div>';
+        Modal::end();
+
+// Aggiungi il seguente codice JavaScript per avviare la riproduzione del video quando l'utente fa clic sull'anteprima del video
+        $js = <<<JS
+$(document).on('click', '.video-link', function(e) {
+    e.preventDefault();
+    var videoUrl = $(this).attr('href');
+    $('#video-modal iframe').attr('src', videoUrl);
+    $('#video-modal').modal('show');
+});
+
+    $('#video-modal').on('hidden.bs.modal', function() {
+    $('#video-modal iframe').attr('src', '');
+});
+JS;
+        $this->registerJs($js);
+    }
+    else{
+        echo '<h1 class="text-warning"> SVOLGI TUTTI GLI ESERCIZI PER RICEVERE UN PREMIO!</h1>';
+    }
+
+
+    ?></td>
+
 
 </br></br>
 <div class="container">
