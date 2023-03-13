@@ -178,7 +178,7 @@ class LogopedistaController extends Controller
 
                 if($model->save()){
 
-                return $this->redirect(['vedi-caregiver']);
+                return $this->redirect(['vedi-assistiti']);
                }
             }
         } else {

@@ -2,9 +2,12 @@
 
 namespace app\controllers;
 
+use app\models\Assegnazione;
 use app\models\Assistito;
 use app\models\AssistitoSearch;
 use app\models\Caregiver;
+use app\models\Esercizio;
+use app\models\EsercizioSearch;
 use app\models\LoginForm;
 use app\models\CaregiverSearch;
 use app\models\LogopedistaSearch;
@@ -189,6 +192,32 @@ public function actionVediAssistiti()
 
     ]);
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    public function actionVedi_esercizi($assistito_id)
+    {
+        // Crea un oggetto Assegnazione per la tabella "assegnazione"
+        $assegnazione = new Assegnazione();
+
+        // Recupera i record delle assegnazioni per l'assistito corrente
+        $query = $assegnazione::find()
+            ->where(['id_assistito' => $assistito_id])
+            ->andWhere(['eseguito' => 0]);
+
+        // Crea un oggetto ActiveDataProvider per gli esercizi correlati
+        $dataProvider = new ActiveDataProvider([
+            'query' => Esercizio::find()->where(['id' => $query->select('id_esercizio')]),
+        ]);
+
+        // Renderizza la vista con i dati del DataProvider
+        return $this->render('vedi_esercizi', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 
 
 }
