@@ -6,12 +6,14 @@ use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
 /** @var app\models\Caregiver $model */
+/** @var app\models\Assistito $assistito */
 
 
 
 
 
-
+$nome = $model->nome;
+$cognome = $model->cognome;
 
 
 
@@ -24,7 +26,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Tutti gli assistiti', 'url' => ['v
 <div class="logopedista-view">
 
 
-    <h1>Dettaglio Assistito n.<?= Html::encode($model->id) ?></h1>
+    <h1><?php echo 'Dettaglio assistito:  ' . $cognome . ' ' . $nome ?></h1>
     <p>
         <?= Html::a('Modifica dati', ['modifica_assistito', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Elimina', ['elimina_assistito', 'id' => $model->id], [

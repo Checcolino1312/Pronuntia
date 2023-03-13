@@ -30,23 +30,16 @@ $query2->from('assegnazione');
 $query2->where(['id_assistito' => $id_assistito])
     ->andWhere(['eseguito' => 1]);
 $count2 = $query2->count();
+
+
+if($count == 0){ $count = 1;}
+if($count2 == 0){ $count2 = 0;}
 ?>
 
 
 <td style="text-align: center;"><?php if($count2/$count == 1){
         echo '<h1 class="text-success"> TUTTI GLI ESERCIZI SONO STATI SVOLTI </h1>';
-//        Modal::begin([
-//            'title' => 'Modal Title',
-//            'toggleButton' => [
-//                'label' => 'ECCO IL TUO PREMIO!',
-//                'class' => 'btn btn-success',
-//            ],
-//        ]);
-//
-//// qui viene creato l'iframe
-//echo '<iframe src="https://www.youtube.com/watch?v=anDQEBF7f-o" width="100%" height="400"></iframe>';
-//
-//Modal::end();
+
         Modal::begin([
             'title' => 'CLICCA!',
             'toggleButton' => [
