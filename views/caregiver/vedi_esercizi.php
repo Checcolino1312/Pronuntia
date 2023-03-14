@@ -32,38 +32,45 @@ $query2->where(['id_assistito' => $id_assistito])
 $count2 = $query2->count();
 
 
-if($count == 0){ $count = 1;}
-if($count2 == 0){ $count2 = 0;}
+//if($count == 0){ $count = 1;}
+//if($count2 == 0){ $count2 = 0;}
 ?>
 
 
-<td style="text-align: center;"><?php if($count2/$count == 1){
-        echo '<h1 class="text-success"> TUTTI GLI ESERCIZI SONO STATI SVOLTI </h1>';
+<td style="text-align: center;"><?php
 
-        Modal::begin([
-            'title' => 'CLICCA!',
-            'toggleButton' => [
-                'label' => '☆ ☆ ☆ PREMIO ☆ ☆ ☆',
-                'class' => 'btn btn-success',
-            ],
-        ]);
+    if($count == 0){
+        echo '<div> NON SONO STATI ANCORA ASSEGNATI ESERCIZI </div>';
+    }
+    else {
+
+        if ($count2 - $count == 0) {
+            echo '<h1 class="text-success"> TUTTI GLI ESERCIZI SONO STATI SVOLTI </h1>';
+
+            Modal::begin([
+                'title' => 'CLICCA!',
+                'toggleButton' => [
+                    'label' => '☆ ☆ ☆ PREMIO ☆ ☆ ☆',
+                    'class' => 'btn btn-success',
+                ],
+            ]);
 // Anteprima del video
-        echo '<a href="https://www.youtube.com/embed/anDQEBF7f-o" class="video-link" data-toggle="modal" data-target="#video-modal"><img width="100%" height="300" src="https://img.youtube.com/vi/anDQEBF7f-o/maxresdefault.jpg" alt="Anteprima del video"></a>';
+            echo '<a href="https://www.youtube.com/embed/anDQEBF7f-o" class="video-link" data-toggle="modal" data-target="#video-modal"><img width="100%" height="300" src="https://img.youtube.com/vi/anDQEBF7f-o/maxresdefault.jpg" alt="Anteprima del video"></a>';
 
-        Modal::end();
+            Modal::end();
 
 // Modale per la riproduzione del video
-        Modal::begin([
-            'title' => 'ECCO IL TUO PREMIO',
-            'id' => 'video-modal',
-            'size' => Modal::SIZE_LARGE,
+            Modal::begin([
+                'title' => 'ECCO IL TUO PREMIO',
+                'id' => 'video-modal',
+                'size' => Modal::SIZE_LARGE,
 
-        ]);
-        echo '<div class="embed-responsive embed-responsive-16by9"><iframe width="100%" height="400" class="embed-responsive-item" src=""></iframe></div>';
-        Modal::end();
+            ]);
+            echo '<div class="embed-responsive embed-responsive-16by9"><iframe width="100%" height="400" class="embed-responsive-item" src=""></iframe></div>';
+            Modal::end();
 
 // Aggiungi il seguente codice JavaScript per avviare la riproduzione del video quando l'utente fa clic sull'anteprima del video
-        $js = <<<JS
+            $js = <<<JS
 $(document).on('click', '.video-link', function(e) {
     e.preventDefault();
     var videoUrl = $(this).attr('href');
@@ -75,12 +82,11 @@ $(document).on('click', '.video-link', function(e) {
     $('#video-modal iframe').attr('src', '');
 });
 JS;
-        $this->registerJs($js);
+            $this->registerJs($js);
+        } else {
+            echo '<h1 class="text-warning"> SVOLGI TUTTI GLI ESERCIZI PER RICEVERE UN PREMIO!</h1>';
+        }
     }
-    else{
-        echo '<h1 class="text-warning"> SVOLGI TUTTI GLI ESERCIZI PER RICEVERE UN PREMIO!</h1>';
-    }
-
 
     ?></td>
 

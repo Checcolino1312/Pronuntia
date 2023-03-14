@@ -52,8 +52,8 @@ $id = Yii::$app->session->get('id');
                     ->andWhere(['eseguito' => 1]);
                 $count2 = $query2->count();
 
-                if($count == 0){ $count = 1;}
-                if($count2 == 0){ $count2 = 0;}
+//                if($count == 0){ $count = 1;}
+//                if($count2 == 0){ $count2 = 0;}
 
                 ?>
                 <tr>
@@ -65,13 +65,18 @@ $id = Yii::$app->session->get('id');
                     <td style="text-align: center;"><?= $count2.'/'.$count  ?></td>
                     <td style="text-align: center;"><?php
 
-                        if($count2/$count == 1){
+
+                        if($count == 0){
+                            echo '<div> NON SONO STATI ANCORA ASSEGNATI ESERCIZI </div>';
+                        }
+                        else{
+                        if($count2-$count == 0){
                             echo '<div class="text-success"> TUTTI GLI ESERCIZI SONO STATI SVOLTI </div>';
                         }
                         else{
                             echo '<p class="text-danger"> CI SONO ESERCIZI DA SVOLGERE </p>';
                         }
-
+                        }
 
 
                         ?></td>
