@@ -218,9 +218,32 @@ class LogopedistaController extends Controller
 
         ]);
     }
-    public function actionDettaglio_assistito($id){
+    public function actionDettaglio_assistito($id)
+    {
+        $assistito = Assistito::findOne($id);
+        $valutazioni = Assegnazione::find()
+            ->select(['id_esercizio', 'valutazione'])
+            ->where(['id_assistito' => $id])
+            ->all();
 
-        return $this->render('dettaglio_assistito', ['model' => Assistito::findOne($id)]);
+        $data = [];
+        $data[] = ['ID', 'Valutazione'];
+
+        $totale_valutazioni = 0;
+        $num_valutazioni = count($valutazioni);
+
+        foreach ($valutazioni as $valutazione) {
+            $data[] = [(string)$valutazione->id_esercizio, (int)$valutazione->valutazione];
+            $totale_valutazioni += $valutazione->valutazione;
+        }
+
+        $media_valutazioni = ($num_valutazioni > 0) ? ($totale_valutazioni / $num_valutazioni) : 0;
+
+        return $this->render('dettaglio_assistito', [
+            'data' => $data,
+            'model' => $assistito,
+            'media_valutazioni' => $media_valutazioni,
+        ]);
     }
 
 

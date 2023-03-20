@@ -11,9 +11,15 @@ use Yii;
  * @property int $id_assistito
  * @property int $id_esercizio
  * @property int|null $eseguito
+ * @property int|null $valutazione
  */
 class Assegnazione extends \yii\db\ActiveRecord
 {
+    /**
+     * @var mixed|null
+     */
+
+
     /**
      * {@inheritdoc}
      */
@@ -29,7 +35,7 @@ class Assegnazione extends \yii\db\ActiveRecord
     {
         return [
             [['id_assistito', 'id_esercizio'], 'required'],
-            [['id_assistito', 'id_esercizio', 'eseguito'], 'integer'],
+            [['id_assistito', 'id_esercizio', 'eseguito','valutazione'], 'integer'],
         ];
     }
 
@@ -43,6 +49,7 @@ class Assegnazione extends \yii\db\ActiveRecord
             'id_assistito' => 'Id Assistito',
             'id_esercizio' => 'Id Esercizio',
             'eseguito' => 'Eseguito',
+            'valutazione' => 'Valutazione',
         ];
     }
 }

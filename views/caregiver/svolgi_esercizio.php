@@ -23,7 +23,7 @@ $this->params['breadrumbs'][] = $this->title;
 <div class="container">
     <div class="row">
         <?php foreach ($dataProvider->models as $index => $model): ?>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card" >
                     <img class="card-img-top" src="<?php echo Yii::getAlias('@web').'/'.$model->immagine_filepath; ?>" alt="Card image cap" >
                     <div class="card-body">
@@ -39,9 +39,15 @@ $this->params['breadrumbs'][] = $this->title;
                         <?php
                         $assegnazione = app\models\Assegnazione::findOne(['id_assistito' => $id_assistito, 'id_esercizio' => $model->id]);
                         if($assegnazione && $assegnazione->eseguito == 1) {
+                            echo "Svolgimento approvato.";
                             echo yii\helpers\Html::a('TORNA AGLI ESERCIZI', ['vedi_esercizi', 'assistito_id' => $id_assistito], ['class' => 'btn btn-warning btn-lg btn-block', 'title' => 'Torna agli esercizi']);
-                        } else {
-                            echo yii\helpers\Html::a('APPROVA SVOLGIMENTO', ['svolgi_esercizio', 'assistito_id' => $id_assistito, 'esercizio_id' => $model->id], ['class' => 'btn btn-success btn-lg btn-block', 'title' => 'Approva svolgimento']);
+                        } else {            if($assegnazione->valutazione == 0) {
+                            echo "Valuta lo svolgimento dell' esercizio: </br>";
+                            for ($i = 1; $i <= 5; $i++) {
+                                //CLICCA SULLA STELLA E METTE ESEGUITO = TRUE E VALUTAZIONE IL VALORE DELLA STELLA
+                                echo Html::a($i . ' ☆', ['svolgi_esercizio', 'assistito_id' => $id_assistito, 'esercizio_id' => $model->id, 'valutazione' => $i], ['class' => 'btn btn-warning m-1']);
+                            }
+                        }
 
                         }
                         ?>

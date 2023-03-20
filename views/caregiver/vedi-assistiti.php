@@ -83,6 +83,7 @@ $id = Yii::$app->session->get('id');
                     <td style="text-align: center;">
 
                         <?= yii\helpers\Html::a('Esercizi', ['vedi_esercizi', 'assistito_id' => $model->id], ['class' => 'btn btn-success', 'title' => 'Esercizi']) ?>
+<!--                        --><?php //= yii\helpers\Html::a('Andamento', ['grafico', 'id_assistito' => $model->id], ['class' => 'btn btn-success', 'title' => 'Esercizi']) ?>
 
                         <?= yii\helpers\Html::a('Visualizza', ['dettaglio_assistito', 'id' => $model->id], ['class' => 'btn btn-info', 'title' => 'Visualizza']) ?>
 

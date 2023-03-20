@@ -39,11 +39,14 @@ $this->params['breadrumbs'][] = $this->title;
                         <?php
                         $assegnazione = app\models\Assegnazione::findOne(['id_assistito' => $id_assistito, 'id_esercizio' => $model->id]);
                         if($assegnazione && $assegnazione->eseguito == 0) {
+
                             echo yii\helpers\Html::a('TORNA AGLI ESERCIZI', ['vedi_esercizi', 'assistito_id' => $id_assistito], ['class' => 'btn btn-warning btn-lg btn-block', 'title' => 'Torna agli esercizi']);
                         } else {
+
                             echo yii\helpers\Html::a('APPROVA SVOLGIMENTO', ['svolgi_esercizio', 'assistito_id' => $id_assistito, 'esercizio_id' => $model->id], ['class' => 'btn btn-success btn-lg btn-block', 'title' => 'Approva svolgimento']);
 
                         }
+
                         ?>
                     </div>
                 </div>

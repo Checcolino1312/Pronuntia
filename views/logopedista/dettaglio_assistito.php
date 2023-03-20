@@ -56,3 +56,39 @@ $this->params['breadcrumbs'][] = ['label' => 'Tutti gli assistiti', 'url' => ['v
     ]) ?>
 
 </div>
+    <div class="grafico">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+        <div id="grafico-valutazioni"></div>
+
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable(<?= json_encode($data) ?>);
+
+                var options = {
+                    title: 'Andamento',
+                    chartArea: {width: '50%'},
+                    hAxis: {
+                        title: 'Valutazione',
+                        minValue: 0,
+                        maxValue: 5,
+                        format: '#'
+                    },
+                    vAxis: {
+                        title: 'Esercizi',
+                        textPosition: 'none' // rimuove i testi dall'asse verticale
+                    }
+                };
+
+
+                var chart = new google.visualization.BarChart(document.getElementById('grafico-valutazioni'));
+                chart.draw(data, options);
+            }
+        </script>
+    </div>
+
+<?php echo 'Media aritmetica:  ' . $media_valutazioni; ?>

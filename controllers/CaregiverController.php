@@ -192,6 +192,7 @@ public function actionVediAssistiti()
 
     ]);
 }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -222,7 +223,7 @@ public function actionVediAssistiti()
     }
 
 
-    public function actionSvolgi_esercizio($assistito_id, $esercizio_id)
+    public function actionSvolgi_esercizio($assistito_id, $esercizio_id, $valutazione)
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Esercizio::find()->where(['id' => $esercizio_id]),
@@ -235,6 +236,7 @@ public function actionVediAssistiti()
         if ($assegnazione !== null) {
             // Imposta il valore di "eseguito" a 1
             $assegnazione->eseguito = 1;
+            $assegnazione->valutazione = $valutazione;
             $assegnazione->save(false); // salva senza validazione
         }
 
@@ -265,7 +267,57 @@ public function actionVediAssistiti()
     }
 
 
+//    public function actionDettaglio_assistito($id){
+//
+//        return $this->render('dettaglio_assistito', ['model' => Assistito::findOne($id)]);
+//    }
+//
+//
+//    public function actionGrafico($id_assistito)
+//    {
+//        $valutazioni = Assegnazione::find()
+//            ->select(['id_esercizio', 'valutazione'])
+//            ->where(['id_assistito' => $id_assistito])
+//            ->all();
+//
+//        $data = [];
+//        $data[] = ['ID', 'Valutazione'];
+//
+//        foreach ($valutazioni as $valutazione) {
+//            $data[] = [(string)$valutazione->id_esercizio, (int)$valutazione->valutazione];
+//        }
+//
+//        return $this->render('grafico', [
+//            'data' => $data,
+//        ]);
+//    }
+    public function actionDettaglio_assistito($id)
+    {
+        $assistito = Assistito::findOne($id);
+        $valutazioni = Assegnazione::find()
+            ->select(['id_esercizio', 'valutazione'])
+            ->where(['id_assistito' => $id])
+            ->all();
 
+        $data = [];
+        $data[] = ['ID', 'Valutazione'];
+
+        $totale_valutazioni = 0;
+        $num_valutazioni = count($valutazioni);
+
+        foreach ($valutazioni as $valutazione) {
+            $data[] = [(string)$valutazione->id_esercizio, (int)$valutazione->valutazione];
+            $totale_valutazioni += $valutazione->valutazione;
+        }
+
+        $media_valutazioni = ($num_valutazioni > 0) ? ($totale_valutazioni / $num_valutazioni) : 0;
+
+        return $this->render('dettaglio_assistito', [
+            'data' => $data,
+            'model' => $assistito,
+            'media_valutazioni' => $media_valutazioni,
+        ]);
+    }
 
 
 }
