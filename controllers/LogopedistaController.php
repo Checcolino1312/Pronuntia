@@ -278,33 +278,48 @@ class LogopedistaController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
-                $nameim = UploadedFile::getInstance($model,'immagine');
-                $nameau = UploadedFile::getInstance($model,'audio');
+                $nameim = UploadedFile::getInstance($model, 'immagine');
+                $nameau = UploadedFile::getInstance($model, 'audio');
 
-                $pathim = 'uploads/'.md5($nameim->baseName).'.'.$nameim->extension;
-                $pathau = 'uploads/'.md5($nameau->baseName).'.'.$nameau->extension;
+                // Percorso assoluto della cartella uploads
+                $uploadPath = Yii::getAlias('@webroot/uploads/');
 
-                if($nameim->saveAs($pathim) && $nameau->saveAs($pathau)){
+                // Crea la cartella se non esiste
+                if (!is_dir($uploadPath)) {
+                    mkdir($uploadPath, 0777, true);
+                }
 
-                    $model->immagine = $nameim->baseName.'.'.$nameim->extension;
-                    $model->audio = $nameau->baseName.'.'.$nameau->extension;
+                // Genera nomi file univoci
+                $fileNameIm = md5($nameim->baseName . time()) . '.' . $nameim->extension;
+                $fileNameAu = md5($nameau->baseName . time()) . '.' . $nameau->extension;
 
-                    $model->immagine_filepath = $pathim;
-                    $model->audio_filepath = $pathau;
+                // Percorsi completi
+                $pathim = $uploadPath . $fileNameIm;
+                $pathau = $uploadPath . $fileNameAu;
 
-                    //l'esercizio viene associato al logopedista che l' ha creato
+                if ($nameim->saveAs($pathim) && $nameau->saveAs($pathau)) {
+                    $model->immagine = $nameim->baseName . '.' . $nameim->extension;
+                    $model->audio = $nameau->baseName . '.' . $nameau->extension;
+
+                    // Questi sono i percorsi relativi usati nel DB
+                    $model->immagine_filepath = 'uploads/' . $fileNameIm;
+                    $model->audio_filepath = 'uploads/' . $fileNameAu;
+
+                    // Collega l'esercizio al logopedista
                     $model->id_logopedista = Yii::$app->session->get('id');
-                    if($model->save()){
+
+                    if ($model->save()) {
                         return $this->redirect(['vedi_esercizi']);
                     }
                 }
             }
         }
+
         return $this->render('crea_esercizio', [
             'model' => $model,
         ]);
-
     }
+
 
     public function actionVedi_esercizi()
     {

@@ -86,19 +86,20 @@ class Logopedista extends \yii\db\ActiveRecord implements IdentityInterface
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            if ($this->isNewRecord) {
-                $this->password = Yii::$app->security->generatePasswordHash($this->password);
-
-                $this->generateAuthKey(); // aggiungi questa riga
+            if ($this->isNewRecord && !empty($this->password)) {
+                $this->password_hash = Yii::$app->security->generatePasswordHash($this->password);
+                $this->generateAuthKey();
             }
             return true;
         }
         return false;
     }
+
     public function validatePassword($password)
     {
-        return Yii::$app->security->validatePassword($password, $this->password);
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
+
     public function setPassword($password)
     {
         $this->password_hash = Yii::$app->security->generatePasswordHash($password);
