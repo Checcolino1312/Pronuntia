@@ -117,8 +117,8 @@ Altrimenti crea nuovi utenti tramite interfaccia.
 
 ## 🤝 Autori
 
-- 👨‍💻 Sviluppato da: *[Il tuo nome o gruppo di lavoro]*
-- 📚 Università: *Ingegneria del Software – Università del Salento*
+- 👨‍💻 Sviluppato da: Francesco Paolo Ragusa - Giuseppe Roma
+- 📚 Università: *Ingegneria del Software – Università di Bari - Informatica e Tecnologie per la Produzione del Software*
 
 ---
 
